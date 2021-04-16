@@ -1,11 +1,27 @@
 const express = require('express');
 const axios = require('axios');
+const {API_TOKEN} = require('../config/config.js');
+
+const productsRoutes = require('./routes/products.js');
+const cartRoutes = require('./routes/cart.js');
+const reviewsRoutes = require('./routes/reviews.js');
+
+
 
 const app = express();
-const PORT = 3046;
+const PORT = 3002;
 
 app.use(express.json());
 app.use(express.static("dist"));
+
+
+///// ROUTES /////
+app.use('/products', productsRoutes);
+app.use('/cart', cartRoutes);
+app.use('/reviews/', reviewsRoutes);
+
+
+
 
 
 
@@ -14,3 +30,5 @@ app.use(express.static("dist"));
 app.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}`);
 })
+
+
