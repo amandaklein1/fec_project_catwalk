@@ -3,7 +3,7 @@
 import React from "react";
 import { hot } from 'react-hot-loader/root';
 import axios from 'axios';
-
+import StyleListContainer from '../containers/StyleListContainer';
 
 
 class App extends React.Component {
@@ -38,6 +38,9 @@ class App extends React.Component {
         <button onClick={this.handleTestCall} type="button">
           Call API
         </button>
+        <div>
+          <StyleListContainer />
+        </div>
       </>
     );
   }
