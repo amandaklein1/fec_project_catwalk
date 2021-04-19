@@ -1,0 +1,29 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true
+    },
+    "extends": [
+        "airbnb",
+        "prettier",
+        "plugin:react/recommended",
+        "plugin:jest/recommended"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12
+    },
+    "plugins": [
+        "react",
+        "prettier",
+        "jest"
+    ],
+    "rules": {
+        "no-unused-vars":"warn",
+        "spaced-comment":"warn",
+        "react/jsx-filename-extension":"off"
+    }
+}
