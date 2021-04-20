@@ -1,15 +1,17 @@
 import { combineReducers } from 'redux';
-import styleList from './styleList.js';
-import currentSku from './currentSku.js';
-import relatedStyles from './relatedStyles.js';
-import outfit from './outfit.js';
+import styleList from './styleList';
+import currentSku from './currentSku';
+import relatedStyles from './relatedStyles';
+import outfit from './outfit';
+import relatedProductsReducer from './relatedProducts';
 
 
 var rootReducer = combineReducers({
   styleList,
   currentSku,
   relatedStyles,
-  outfit
+  outfit,
+  relatedProductsReducer
 
 });
 
