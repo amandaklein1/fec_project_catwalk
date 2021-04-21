@@ -1,4 +1,3 @@
-import Redux from 'redux';
 
 var outfitReducer = (state = [], action) => {
   switch (action.type) {

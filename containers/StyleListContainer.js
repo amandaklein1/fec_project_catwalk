@@ -2,16 +2,16 @@ import { connect } from 'react-redux';
 import StyleList from '../src/components/productDetail';
 import changeCurrentSku from '../actions/currentSku';
 
-var mapStateToProps = (state) => ({
-  styleList: state.styleList
+const mapStateToProps = (state) => ({
+  styles: state.styleList
 });
 
-var mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
   handleCurrentSkuTitleClick: (style) => {
     dispatch(changeCurrentSku(style));
   }
 });
 
-var StyleListContainer = connect(mapStateToProps, mapDispatchToProps)(StyleList);
+const StyleListContainer = connect(mapStateToProps, mapDispatchToProps)(StyleList);
 
 export default StyleListContainer;

@@ -4,6 +4,8 @@ import React from "react";
 import { hot } from 'react-hot-loader/root';
 import axios from 'axios';
 import StyleListContainer from '../containers/StyleListContainer';
+import StyleVisualContainer from '../containers/styleVisualContainer';
+import CartContainer from '../containers/cartContainer';
 
 
 class App extends React.Component {
@@ -33,13 +35,23 @@ class App extends React.Component {
     return (
       <>
         <h1>
-          Hello from React!
+          Welcome To PepManda!
         </h1>
         <button onClick={this.handleTestCall} type="button">
           Call API
         </button>
-        <div>
+        <div className="productOverview">
+          <div className="shownImage">
+            <StyleVisualContainer />
+          </div>
+          <div className="styleInfo">
+          <div className="thumbnailList">
           <StyleListContainer />
+          </div>
+          <div className="cartList">
+          <CartContainer />
+          </div>
+          </div>
         </div>
       </>
     );

@@ -1,8 +1,7 @@
 
-var changeCurrentSku = (style) => ({
-
+const changeCurrentSku = (style) => ({
   type: 'CHANGE_CURRENT_SKU',
-  sku: style
+  thumbnail: style
   });
 
 export default changeCurrentSku;
