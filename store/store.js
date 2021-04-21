@@ -1,8 +1,18 @@
 import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import rootReducer from './../reducers/main.js';
+import rootReducer from '../reducers/main';
+
+/*
 
 
+
+const store = createStore(reducer, composeWithDevTools(
+  applyMiddleware(...middleware),
+  // other store enhancers if any
+));
+
+*/
 
 export default createStore(
   rootReducer,
@@ -302,7 +312,7 @@ export default createStore(
     relatedStyles: [],
     outfit: []
   },
-  applyMiddleware(thunk)
+  composeWithDevTools(applyMiddleware(thunk))
 
 );
 
