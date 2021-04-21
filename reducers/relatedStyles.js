@@ -1,4 +1,3 @@
-import Redux from 'redux';
 
 var relatedStylesReducer = (state = [], action) => {
   switch (action.type) {

@@ -1,16 +1,22 @@
 import React from 'react';
-import CurrentSku from './currentSkuDetail';
+import Thumbnails from './thumbnails';
 
-var StyleList = ({styles, handleCurrentSkuTitleClick}) => (
+const StyleList = ({styles, handleCurrentSkuTitleClick}) => (
   <div>
+    <h3>{styles.product_id}</h3>
+  <div className="thumbnails">
     {
-      styles.map(style => (
-        <CurrentSku
+      styles.results.map(style => (
+        <Thumbnails
+          key={style.name}
+          id={styles.product_id}
+          name={style.name}
           style={style}
           handleCurrentSkuTitleClick={handleCurrentSkuTitleClick}
         />
       ))
     }
+  </div>
   </div>
 );
 

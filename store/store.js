@@ -3,17 +3,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers/main';
 
-/*
-
-
-
-const store = createStore(reducer, composeWithDevTools(
-  applyMiddleware(...middleware),
-  // other store enhancers if any
-));
-
-*/
-
 export default createStore(
   rootReducer,
   {
@@ -268,7 +257,7 @@ export default createStore(
         }
       ]
     },
-    currentSku: {
+    thumbnails: {
       style_id: 51163,
       name: 'Dark Grey & Black',
       original_price: '170.00',

@@ -1,5 +1,5 @@
 
-var changeRelatedStyles = (relatedStyles) => ({
+const changeRelatedStyles = (relatedStyles) => ({
 
   type: 'CHANGE_RELATED_STYLES',
   relatedStyles: relatedStyles
