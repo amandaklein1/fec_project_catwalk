@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import rootReducer from './../reducers/main.js';
+import rootReducer from './../reducers/main';
 
 
 
@@ -258,7 +258,7 @@ export default createStore(
         }
       ]
     },
-    currentSku: {
+    thumbnails: {
       style_id: 51163,
       name: 'Dark Grey & Black',
       original_price: '170.00',

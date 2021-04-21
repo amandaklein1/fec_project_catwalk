@@ -1,5 +1,5 @@
 
-var changeStyleList = (styles) => ({
+const changeStyleList = (styles) => ({
 
   type: 'CHANGE_STYLE_LIST',
   styleList: styles

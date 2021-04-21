@@ -1,5 +1,5 @@
 
-var changeOutfit = (outfits) => ({
+const changeOutfit = (outfits) => ({
 
   type: 'CHANGE_OUTFIT',
   outfit: outfits
