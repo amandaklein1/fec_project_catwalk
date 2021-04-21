@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   thumbnails,
   relatedStyles,
   outfit,
-  relatedProductsReducer
+  relatedProducts: relatedProductsReducer
 
 });
 

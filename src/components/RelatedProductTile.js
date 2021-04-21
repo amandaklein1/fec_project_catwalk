@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
+import TileImage from './tiles-subcomps/TileImage';
 
 
 const RelatedProductTile = ({ currentId, relId }) => {
@@ -76,7 +77,8 @@ const RelatedProductTile = ({ currentId, relId }) => {
       category: details.category,
       defaultPrice: details.default_price,
       features: details.features,
-      ratings: calcAvgRatings(meta.ratings)
+      ratings: calcAvgRatings(meta.ratings),
+      photos: styles[0].photos
     };
     for (let i = 0; i < styles.length; i++) {
       const thisStyle = styles[i];
@@ -105,11 +107,22 @@ const RelatedProductTile = ({ currentId, relId }) => {
       .catch((err) => {
         throw err;
       });
-  }, [])
+    }, [])
 
   return (
     <li>
-      {tile.name}
+      {
+        tile.photos ?
+        <img className="relatedProd-image" src={tile.photos[0].url || 'https://source.unsplash.com/200x100/?corgi'} alt={tile.name} width="150"/> :
+        <></>
+      }
+      <div>{tile.category}</div>
+      <div>{tile.name}</div>
+      {
+        tile.salePrice ?
+        <div>{tile.salePrice}</div> :
+        <div>{tile.defaultPrice}</div>
+      }
     </li>
   );
 
@@ -117,3 +130,4 @@ const RelatedProductTile = ({ currentId, relId }) => {
 
 
 export default RelatedProductTile;
+
