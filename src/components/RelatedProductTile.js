@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import TileImage from './tiles-subcomps/TileImage';
+import StarRatings from './tiles-subcomps/StarRatings';
 
 
 const RelatedProductTile = ({ currentId, relId }) => {
@@ -123,6 +123,7 @@ const RelatedProductTile = ({ currentId, relId }) => {
         <div>{tile.salePrice}</div> :
         <div>{tile.defaultPrice}</div>
       }
+      <StarRatings data={tile}/>
     </li>
   );
 
