@@ -177,7 +177,7 @@ Req made with the following params:
 /* GET reviews/meta
 
 Req made with the following params:
-  axios.get('/reviews', {
+  axios.get('/reviews/meta', {
     params: {
       product_id: 11001
     }

@@ -6,6 +6,7 @@ import axios from 'axios';
 import StyleListContainer from '../containers/StyleListContainer';
 import StyleVisualContainer from '../containers/styleVisualContainer';
 import CartContainer from '../containers/cartContainer';
+import RelatedProducts from './components/RelatedProducts';
 
 
 class App extends React.Component {
@@ -35,12 +36,9 @@ class App extends React.Component {
     return (
       <>
         <h1>
-          Welcome To PepManda!
+          Project Catwalk App
         </h1>
-        <button onClick={this.handleTestCall} type="button">
-          Call API
-        </button>
-        <div className="productOverview">
+        {/* <div className="productOverview">
           <div className="shownImage">
             <StyleVisualContainer />
           </div>
@@ -52,7 +50,8 @@ class App extends React.Component {
           <CartContainer />
           </div>
           </div>
-        </div>
+        </div> */}
+        <RelatedProducts/>
       </>
     );
   }
