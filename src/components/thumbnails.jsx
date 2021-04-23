@@ -10,7 +10,6 @@ const Thumbnails = ({style, handleCurrentSkuTitleClick, name}) => (
           </div>
           <img className="thumbnailImg" src={style.photos[0].thumbnail_url} alt="Avatar" onClick={() => handleCurrentSkuTitleClick(style)}/>
         </div>
-      {/* ))} */}
   </div>
 );
 

@@ -17,6 +17,9 @@ function Cart({style}) {
         setStyleInfo(data)
 
       ))
+      .catch((err) => {
+        throw err;
+      })
   }
 
   function getSkuDetail(skus) {
@@ -44,6 +47,16 @@ function Cart({style}) {
   }
 
   function getSizeAndQty(sizeIndex) {
+// skuDetail
+//     0: {quantity: 8, size: "XS"}
+// 1: {quantity: 16, size: "S"}
+// 2: {quantity: 17, size: "M"}
+// 3: {quantity: 10, size: "L"}
+// 4: {quantity: 15, size: "XL"}
+// 5: {quantity: 6, size: "XXL"}
+
+//selectedSizeAndQty
+{/* //{quantity: 15, size: "XL"} */}
 
     setSelectedSizeAndQty(skuDetail[sizeIndex]);
     assignSizeAndQty(selectedSizeAndQty)
@@ -82,6 +95,8 @@ function Cart({style}) {
         </div>
       }
       </div>
+
+
       <div className="sizeOptions">
       <div className="dropdown">
         <select value={selectedSize} onChange={e => getSizeAndQty(e.target.value)}>
@@ -96,7 +111,7 @@ function Cart({style}) {
         {console.log('this is my qty: ', qtyBySize)}
         {console.log('this is my size and qty: ', selectedSizeAndQty)}
       </div>
-      <select value={selectedSize} onChange={e => setQty(e.target.value)}>
+      <select value={selectedQty} onChange={e => setQty(e.target.value)}>
           <option>QTY</option>
           {qtyBySize.map((qty) => (
             <option key={qty} value={qty}>
