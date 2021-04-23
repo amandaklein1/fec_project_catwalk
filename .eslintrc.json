@@ -23,7 +23,12 @@
     ],
     "rules": {
         "no-unused-vars":"warn",
-        "spaced-comment":"warn",
-        "react/jsx-filename-extension":"off"
+        "spaced-comment":"off",
+        "react/jsx-filename-extension":"off",
+        "no-var":"off",
+        "import/no-mutable-exports":"off",
+        "no-empty":"off",
+        "react/prop-types":"warn",
+        "no-plusplus":"off"
     }
 }
