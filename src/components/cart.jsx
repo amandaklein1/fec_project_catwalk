@@ -2,14 +2,28 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+/*
+Issues as I understand:
+- when user selects size, the available QTYs do not populate immediately
+
+
+*/
 
 function Cart({style}) {
+  // API call to GET /products/id
   const [styleInfo, setStyleInfo] = useState([]);
-  const [qtyBySize, setQtyBySize] = useState([]);
+
+  // user selected size
   const [selectedSize, setSize] = useState('');
+  // ...updates qtys available in that size
+  const [qtyBySize, setQtyBySize] = useState([]);
+  // user selected qty to check out
   const [selectedQty, setQty] = useState('');
+  // all available sizes and qtys of that SKU
   const [skuDetail, setSkuDetail] = useState([]);
+  // when size selected, updates with {qty 16, size S}
   const [selectedSizeAndQty, setSelectedSizeAndQty] = useState({});
+  let selectedSizeQty = {};
 
   function getStyleInfo() {
     axios.get(`products/11001`)
@@ -32,18 +46,18 @@ function Cart({style}) {
     let qtyArray = [];
 
     if (sizeQtyObj !== undefined) {
-    setSize(sizeQtyObj.size);
+      setSize(sizeQtyObj.size);
     if (sizeQtyObj.quantity > 15) {
       for(let i = 1; i < 15; i++) {
       qtyArray.push(i);
     }
-  } else {
-    for(let i = 1; i < sizeQtyObj.quantity; i++) {
-      qtyArray.push(i);
+    } else {
+      for(let i = 1; i < sizeQtyObj.quantity; i++) {
+        qtyArray.push(i);
+      }
     }
-  }
-  setQtyBySize(qtyArray)
-}
+      setQtyBySize(qtyArray)
+    }
   }
 
   function getSizeAndQty(sizeIndex) {
@@ -59,7 +73,10 @@ function Cart({style}) {
 {/* //{quantity: 15, size: "XL"} */}
 
     setSelectedSizeAndQty(skuDetail[sizeIndex]);
-    assignSizeAndQty(selectedSizeAndQty)
+    selectedSizeQty = skuDetail[sizeIndex];
+
+    // assignSizeAndQty(selectedSizeAndQty)
+    assignSizeAndQty(selectedSizeQty)
 
   }
 
@@ -67,10 +84,10 @@ function Cart({style}) {
 
 
   useEffect(() => {
-    getStyleInfo()
-    getSkuDetail(style.skus)
-    assignSizeAndQty()
-    getSizeAndQty()
+    getStyleInfo() // fetch prod desc by id
+    getSkuDetail(style.skus) // all qty/size combos
+    // assignSizeAndQty()
+    // getSizeAndQty()
 
   }, [])
 
