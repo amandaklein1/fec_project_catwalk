@@ -28,6 +28,7 @@ const RelatedProductTile = ({ currentId, relId }) => {
   const fetchStyles = () => (
     axios.get(`/products/${relId}/styles`)
       .then(({data}) => {
+        // console.log('related prod styles:', data.results);
         styles = data.results;
         return data.results;
       })
@@ -75,7 +76,7 @@ const RelatedProductTile = ({ currentId, relId }) => {
     const payload = {
       name: details.name,
       category: details.category,
-      defaultPrice: details.default_price,
+      defaultPrice: `$${details.default_price}`,
       features: details.features,
       ratings: calcAvgRatings(meta.ratings),
       photos: styles[0].photos
@@ -110,20 +111,30 @@ const RelatedProductTile = ({ currentId, relId }) => {
     }, [])
 
   return (
-    <li>
-      {
-        tile.photos ?
-        <img className="relatedProd-image" src={tile.photos[0].url || 'https://source.unsplash.com/200x100/?corgi'} alt={tile.name} width="150"/> :
-        <></>
-      }
-      <div>{tile.category}</div>
-      <div>{tile.name}</div>
-      {
-        tile.salePrice ?
-        <div>{tile.salePrice}</div> :
-        <div>{tile.defaultPrice}</div>
-      }
-      <StarRatings data={tile}/>
+    // each tile 184px + 5px column gap
+    <li className="tile">
+
+      <div className="tile-img-container">
+        {tile.photos ?
+        <img className="tile-img" src={tile.photos[0].url || 'https://source.unsplash.com/200x100/?corgi'} alt={tile.name} width="150"/> :
+        <></>}
+      </div>
+
+      <div className="tile-texts-container">
+        <div className="tile-category">{tile.category}</div>
+
+        <div className="tile-name">{tile.name}</div>
+
+        {tile.salePrice ?
+        <div className="tile-price-container">
+          <span className="tile-price sale-price">  {`$${tile.salePrice}`}</span>
+          <span className="tile-price full-price">{tile.defaultPrice}</span>
+        </div> :
+        <div className="tile-price">{tile.defaultPrice}</div>}
+        <StarRatings className="tile-stars" data={tile}/>
+      </div>
+
+
     </li>
   );
 
