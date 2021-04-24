@@ -1,25 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Thumbnails from './thumbnails';
+import axios from 'axios';
 
-const StyleList = ({styles, handleCurrentSkuTitleClick}) => (
-  <div>
-    <h3>{styles.product_id}</h3>
-  <div className="thumbnails">
-    {
-      styles.results.map(style => (
-        <Thumbnails
-          key={style.name}
-          id={styles.product_id}
-          name={style.name}
-          style={style}
-          handleCurrentSkuTitleClick={handleCurrentSkuTitleClick}
-        />
+function StyleList({styles, handleCurrentSkuTitleClick}) {
+  const [styleInfo, setStyleInfo] = useState([]);
+
+  function getStyleInfo() {
+    axios.get(`products/${styles.product_id}`)
+      .then(({data}) => (
+        setStyleInfo(data)
+
       ))
-    }
-  </div>
-  </div>
-);
+  }
 
+  useEffect(() => {
+    getStyleInfo()
+  }, [])
 
+  return (
+    <div>
+    {console.log(styleInfo)}
+      <div>{styleInfo.category}</div>
+      <h3>{styleInfo.name}</h3>
+      <div className="thumbnails">
+        {
+          styles.results.map(style => (
+            <Thumbnails
+              key={style.name}
+              name={style.name}
+              style={style}
+              handleCurrentSkuTitleClick={handleCurrentSkuTitleClick}
+            />
+          ))
+        }
+      </div>
+      </div>
+  )
+}
 
 export default StyleList;
