@@ -302,6 +302,8 @@ export default createStore(
     outfit: []
   },
   composeWithDevTools(applyMiddleware(thunk))
+  // applyMiddleware(thunk)
+
 
 );
 

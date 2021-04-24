@@ -38,7 +38,7 @@ class App extends React.Component {
         <h1>
           Project Catwalk App
         </h1>
-        {/* <div className="productOverview">
+        <div className="productOverview">
           <div className="shownImage">
             <StyleVisualContainer />
           </div>
@@ -50,8 +50,8 @@ class App extends React.Component {
           <CartContainer />
           </div>
           </div>
-        </div> */}
-        <RelatedProducts/>
+        </div>
+        <RelatedProducts />
       </>
     );
   }
