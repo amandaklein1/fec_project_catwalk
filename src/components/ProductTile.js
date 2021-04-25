@@ -15,52 +15,52 @@ const ProductTile = ({ tileType, currentId, relId }) => {
   let meta = {};
   const [tile, setTile] = useState({});
 
-  const fetchDetails = (fetchType) => {
-    if (fetchType === 'related') {
-      return axios.get(`/products/${relId}`)
-        .then(({data}) => {
-          details = data;
-          return data;
-        })
-        .catch((err) => {
-          throw err;
-        })
-    }
+  let target;
+  if (tileType === 'related') {
+    target = relId
+  } else if (tileType === 'outfit') {
+    target = currentId
   }
 
-  const fetchStyles = (fetchType) => {
-    if (fetchType === 'related') {
-      return axios.get(`/products/${relId}/styles`)
-        .then(({data}) => {
-          // console.log('related prod styles:', data.results);
-          styles = data.results;
-          return data.results;
-        })
-        .catch((err) => {
-          throw err;
-        })
-    }
-  }
-
-  const fetchMeta = (fetchType) => {
-    if (fetchType === 'related') {
-      return axios.get('/reviews/meta', {
-        params: {
-          product_id: relId
-        }
+  const fetchDetails = () => (
+    axios.get(`/products/${target}`)
+      .then(({data}) => {
+        details = data;
+        return data;
       })
-        .then(({data}) => {
-          meta = data;
-          return data;
-        })
-        .catch((err) => {
-          throw err;
-        })
-    }
-  }
+      .catch((err) => {
+        throw err;
+      })
+  )
 
-  const fetchAllRelevantData = (fetchType) => (
-    Promise.all([fetchDetails(fetchType), fetchStyles(fetchType), fetchMeta(fetchType)])
+  const fetchStyles = () => (
+    axios.get(`/products/${target}/styles`)
+      .then(({data}) => {
+        styles = data.results;
+        return data.results;
+      })
+      .catch((err) => {
+        throw err;
+      })
+  )
+
+  const fetchMeta = () => (
+    axios.get('/reviews/meta', {
+      params: {
+        product_id: target
+      }
+    })
+      .then(({data}) => {
+        meta = data;
+        return data;
+      })
+      .catch((err) => {
+        throw err;
+      })
+  )
+
+  const fetchAllRelevantData = () => (
+    Promise.all([fetchDetails(), fetchStyles(), fetchMeta()])
       .catch((err) => {
         console.log(err);
       })
@@ -102,7 +102,7 @@ const ProductTile = ({ tileType, currentId, relId }) => {
 
   useEffect(() => {
 
-    fetchAllRelevantData(tileType)
+    fetchAllRelevantData()
       .then((result) => {
         const payload = createPayload();
         setTile(payload);
@@ -115,10 +115,10 @@ const ProductTile = ({ tileType, currentId, relId }) => {
             payload
           });
         } else if (tileType === 'outfit') {
-          // dispatch({
-          //   type: 'ADD_USER_OUTFIT',
-          //   payload
-          // });
+          dispatch({
+            type: 'ADD_USER_OUTFIT',
+            payload
+          });
         }
       })
       .catch((err) => {
