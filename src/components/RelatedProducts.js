@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import RelatedProductTile from './RelatedProductTile';
+import ProductTile from './ProductTile';
 
 const RelatedProducts = () => {
 
@@ -37,19 +37,20 @@ const RelatedProducts = () => {
 
   return (
     <div>
-      <span>Related Products</span>
+      <span id="RP-title">Related Products</span>
       <div id="RP-wrapper">
-          {scrollPos !== 0 ?
-          <span className="prev-arrow" onClick={handlePrevScroll}>&lsaquo;</span> :
-          <></>}
-
-          <span className="next-arrow" onClick={handleNextScroll}>&rsaquo;</span>
 
         <ol id="tiles">
           {relatedIds.map((id) => (
-            <RelatedProductTile currentId={currentProductId} relId={id} key={id}/>
+            <ProductTile tileType='related' currentId={currentProductId} relId={id} key={id}/>
           ))}
         </ol>
+
+        {scrollPos !== 0 ?
+        <span className="prev-arrow" onClick={handlePrevScroll}>&lsaquo;</span> :
+        <></>}
+
+        <span className="next-arrow" onClick={handleNextScroll}>&rsaquo;</span>
 
       </div>
     </div>

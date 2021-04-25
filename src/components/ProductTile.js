@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-restricted-syntax */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -5,7 +6,7 @@ import axios from 'axios';
 import StarRatings from './tiles-subcomps/StarRatings';
 
 
-const RelatedProductTile = ({ currentId, relId }) => {
+const ProductTile = ({ tileType, currentId, relId }) => {
 
   const dispatch = useDispatch();
 
@@ -14,46 +15,52 @@ const RelatedProductTile = ({ currentId, relId }) => {
   let meta = {};
   const [tile, setTile] = useState({});
 
-  const fetchDetails = () => (
-    axios.get(`/products/${relId}`)
-      .then(({data}) => {
-        details = data;
-        return data;
-      })
-      .catch((err) => {
-        throw err;
-      })
-  )
+  const fetchDetails = (fetchType) => {
+    if (fetchType === 'related') {
+      return axios.get(`/products/${relId}`)
+        .then(({data}) => {
+          details = data;
+          return data;
+        })
+        .catch((err) => {
+          throw err;
+        })
+    }
+  }
 
-  const fetchStyles = () => (
-    axios.get(`/products/${relId}/styles`)
-      .then(({data}) => {
-        // console.log('related prod styles:', data.results);
-        styles = data.results;
-        return data.results;
-      })
-      .catch((err) => {
-        throw err;
-      })
-  )
+  const fetchStyles = (fetchType) => {
+    if (fetchType === 'related') {
+      return axios.get(`/products/${relId}/styles`)
+        .then(({data}) => {
+          // console.log('related prod styles:', data.results);
+          styles = data.results;
+          return data.results;
+        })
+        .catch((err) => {
+          throw err;
+        })
+    }
+  }
 
-  const fetchMeta = () => (
-    axios.get('/reviews/meta', {
-      params: {
-        product_id: relId
-      }
-    })
-      .then(({data}) => {
-        meta = data;
-        return data;
+  const fetchMeta = (fetchType) => {
+    if (fetchType === 'related') {
+      return axios.get('/reviews/meta', {
+        params: {
+          product_id: relId
+        }
       })
-      .catch((err) => {
-        throw err;
-      })
-  )
+        .then(({data}) => {
+          meta = data;
+          return data;
+        })
+        .catch((err) => {
+          throw err;
+        })
+    }
+  }
 
-  const fetchAllRelevantData = () => (
-    Promise.all([fetchDetails(), fetchStyles(), fetchMeta()])
+  const fetchAllRelevantData = (fetchType) => (
+    Promise.all([fetchDetails(fetchType), fetchStyles(fetchType), fetchMeta(fetchType)])
       .catch((err) => {
         console.log(err);
       })
@@ -93,22 +100,24 @@ const RelatedProductTile = ({ currentId, relId }) => {
   }
 
   useEffect(() => {
-    fetchAllRelevantData()
-      .then((result) => {
-        const payload = createPayload();
-        setTile(payload);
-        return payload;
-      })
-      .then((payload) => {
-        dispatch({
-          type: 'ADD_RELATED_PRODUCT',
-          payload
+    if (tileType === 'related') {
+      fetchAllRelevantData(tileType)
+        .then((result) => {
+          const payload = createPayload();
+          setTile(payload);
+          return payload;
+        })
+        .then((payload) => {
+          dispatch({
+            type: 'ADD_RELATED_PRODUCT',
+            payload
+          });
+        })
+        .catch((err) => {
+          throw err;
         });
-      })
-      .catch((err) => {
-        throw err;
-      });
-    }, [])
+    }
+  }, [])
 
   return (
     // each tile 184px + 5px column gap
@@ -131,8 +140,8 @@ const RelatedProductTile = ({ currentId, relId }) => {
           <span className="tile-price full-price">{tile.defaultPrice}</span>
         </div> :
         <div className="tile-price">{tile.defaultPrice}</div>}
-        <StarRatings className="tile-stars" data={tile}/>
       </div>
+      <StarRatings className="tile-stars" data={tile}/>
 
 
     </li>
@@ -141,5 +150,5 @@ const RelatedProductTile = ({ currentId, relId }) => {
 };
 
 
-export default RelatedProductTile;
+export default ProductTile;
 
