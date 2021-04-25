@@ -1,15 +1,16 @@
 //// TILES ////
 
-#RP-title {
+.carousel-title {
   display: block;
   margin-bottom: 20px;
 }
 
-#RP-wrapper {
+.carousel-wrapper {
   display: flex;
   width: 55vw;
   position: relative;
   margin-bottom: 50px;
+  position: relative;
 }
 
 ::-webkit-scrollbar {
@@ -34,7 +35,7 @@
   color: white;
 }
 
-#tiles {
+.tiles {
   list-style-type: none;
   width: 100%;
   display: flex;
@@ -54,6 +55,49 @@
   height: 40vh;
   flex-direction: column;
   scroll-snap-align: center;
+}
+
+.add-outfit-tile {
+  position: relative;
+}
+
+.add-outfit-circle {
+  display: block;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 1px solid rgb(161, 161, 161);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition-duration: 350ms;
+}
+
+.add-outfit-circle:hover {
+  border: 1px solid black;
+}
+
+.add-outfit-plus {
+  display: block;
+  font-size: 20px;
+  font-weight: 100;
+  color: gray;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.add-outfit-text {
+  display: block;
+  font-weight: 100;
+  font-size: 15px;
+  color: gray;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .tile-img-container {

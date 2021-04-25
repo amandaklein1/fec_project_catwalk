@@ -37,10 +37,10 @@ const RelatedProducts = () => {
 
   return (
     <div>
-      <span id="RP-title">Related Products</span>
-      <div id="RP-wrapper">
+      <span className="carousel-title">Related Products</span>
+      <div className="carousel-wrapper">
 
-        <ol id="tiles">
+        <ol className="tiles">
           {relatedIds.map((id) => (
             <ProductTile tileType='related' currentId={currentProductId} relId={id} key={id}/>
           ))}
