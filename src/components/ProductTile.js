@@ -99,24 +99,32 @@ const ProductTile = ({ tileType, currentId, relId }) => {
     return payload;
   }
 
+
   useEffect(() => {
-    if (tileType === 'related') {
-      fetchAllRelevantData(tileType)
-        .then((result) => {
-          const payload = createPayload();
-          setTile(payload);
-          return payload;
-        })
-        .then((payload) => {
+
+    fetchAllRelevantData(tileType)
+      .then((result) => {
+        const payload = createPayload();
+        setTile(payload);
+        return payload;
+      })
+      .then((payload) => {
+        if (tileType === 'related') {
           dispatch({
             type: 'ADD_RELATED_PRODUCT',
             payload
           });
-        })
-        .catch((err) => {
-          throw err;
-        });
-    }
+        } else if (tileType === 'outfit') {
+          // dispatch({
+          //   type: 'ADD_USER_OUTFIT',
+          //   payload
+          // });
+        }
+      })
+      .catch((err) => {
+        throw err;
+      });
+
   }, [])
 
   return (
