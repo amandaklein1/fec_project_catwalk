@@ -1,16 +1,39 @@
-import React from 'react';
-// import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import StarRatings from './tiles-subcomps/StarRatings';
+import useFetchAndStore from './tiles-subcomps/useFetchAndStore';
 
-const AddOutfitTile = () => (
+const UserOutfitTile = ({ outfitId }) => {
 
-  <li className="tile add-outfit-tile">
-    <span className="add-outfit-circle" />
-    <span className="add-outfit-plus" >+</span>
-    <span className="add-outfit-text">Add Outfit</span>
-  </li>
+  const { details, styles, meta, tile } = useFetchAndStore('outfit', outfitId);
 
-)
+  return (
+    <li className="tile">
 
-export default AddOutfitTile;
+      <div className="tile-img-container">
+        {tile.photos ?
+        <img className="tile-img" src={tile.photos[0].url || 'https://source.unsplash.com/200x100/?corgi'} alt={tile.name} width="150"/> :
+        <></>}
+      </div>
 
-// const currentProductId = useSelector(state => state.styleList.product_id);
+      <div className="tile-texts-container">
+        <div className="tile-category">{tile.category}</div>
+
+        <div className="tile-name">{tile.name}</div>
+
+        {tile.salePrice ?
+        <div className="tile-price-container">
+          <span className="tile-price sale-price">  {`$${tile.salePrice}`}</span>
+          <span className="tile-price full-price">{tile.defaultPrice}</span>
+        </div> :
+        <div className="tile-price">{tile.defaultPrice}</div>}
+      </div>
+      <StarRatings className="tile-stars" data={tile}/>
+
+    </li>
+  );
+
+}
+
+
+export default UserOutfitTile;

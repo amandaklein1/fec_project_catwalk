@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import StarRatings from './tiles-subcomps/StarRatings';
-import useFetchAndStore from './tiles-subcomps/useDataFetching';
+import useFetchAndStore from './tiles-subcomps/useFetchAndStore';
 
 
 const RelatedProductTile = ({ tileType, relId }) => {
@@ -33,7 +33,6 @@ const RelatedProductTile = ({ tileType, relId }) => {
         <div className="tile-price">{tile.defaultPrice}</div>}
       </div>
       <StarRatings className="tile-stars" data={tile}/>
-
 
     </li>
   );

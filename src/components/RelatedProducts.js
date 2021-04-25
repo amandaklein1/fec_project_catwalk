@@ -26,12 +26,12 @@ const RelatedProducts = () => {
   }, [])
 
   const handlePrevScroll = () => {
-    document.getElementById('tiles').scrollLeft -= 189;
+    document.getElementById('RP-carousel').scrollLeft -= 189;
     setScrollPos(scrollPos - 1);
   }
 
   const handleNextScroll = () => {
-    document.getElementById('tiles').scrollLeft += 189;
+    document.getElementById('RP-carousel').scrollLeft += 189;
     setScrollPos(scrollPos + 1);
   }
 
@@ -40,7 +40,7 @@ const RelatedProducts = () => {
       <span className="carousel-title">Related Products</span>
       <div className="carousel-wrapper">
 
-        <ol className="tiles">
+        <ol id="RP-carousel" className="tiles">
           {relatedIds.map((id) => (
             <RelatedProductTile tileType='related' relId={id} key={id}/>
           ))}

@@ -1,3 +1,11 @@
+body {
+}
+
+#app {
+  margin: auto;
+  width: 90vw;
+}
+
 //// TILES ////
 
 .carousel-title {
@@ -39,7 +47,7 @@
   list-style-type: none;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   overflow-x: scroll;
   flex-wrap: nowrap;
   scroll-snap-type: x mandatory;

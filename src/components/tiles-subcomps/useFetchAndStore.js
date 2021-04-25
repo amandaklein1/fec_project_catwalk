@@ -91,28 +91,31 @@ const useFetchAndStore = (fetchType, id) => {
 
   useEffect(() => {
 
-    fetchAllRelevantData()
-      .then((result) => {
-        const payload = createPayload();
-        setTile(payload);
-        return payload;
-      })
-      .then((payload) => {
-        if (fetchType === 'related') {
-          dispatch({
-            type: 'ADD_RELATED_PRODUCT',
-            payload
-          });
-        } else if (fetchType === 'outfit') {
-          dispatch({
-            type: 'ADD_USER_OUTFIT',
-            payload
-          });
-        }
-      })
-      .catch((err) => {
-        throw err;
-      });
+    if (id) {
+      console.log('-- useFetchAndStore called --');
+      fetchAllRelevantData()
+        .then((result) => {
+          const payload = createPayload();
+          setTile(payload);
+          return payload;
+        })
+        .then((payload) => {
+          if (fetchType === 'related') {
+            dispatch({
+              type: 'ADD_RELATED_PRODUCT',
+              payload
+            });
+          } else if (fetchType === 'outfit') {
+            dispatch({
+              type: 'ADD_USER_OUTFIT',
+              payload
+            });
+          }
+        })
+        .catch((err) => {
+          throw err;
+        });
+    }
 
   }, [])
 
