@@ -1,6 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import ProductTile from './ProductTile';
+// import { useSelector } from 'react-redux';
 
 const AddOutfitTile = () => (
 
@@ -14,3 +13,4 @@ const AddOutfitTile = () => (
 
 export default AddOutfitTile;
 
+// const currentProductId = useSelector(state => state.styleList.product_id);

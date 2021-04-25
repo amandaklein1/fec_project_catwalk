@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import ProductTile from './ProductTile';
+import RelatedProductTile from './RelatedProductTile';
 
 const RelatedProducts = () => {
 
@@ -42,7 +42,7 @@ const RelatedProducts = () => {
 
         <ol className="tiles">
           {relatedIds.map((id) => (
-            <ProductTile tileType='related' currentId={currentProductId} relId={id} key={id}/>
+            <RelatedProductTile tileType='related' relId={id} key={id}/>
           ))}
         </ol>
 

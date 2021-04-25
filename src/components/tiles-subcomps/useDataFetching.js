@@ -1,12 +1,9 @@
-/* eslint-disable consistent-return */
 /* eslint-disable no-restricted-syntax */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import StarRatings from './tiles-subcomps/StarRatings';
 
-
-const ProductTile = ({ tileType, currentId, relId }) => {
+const useFetchAndStore = (fetchType, id) => {
 
   const dispatch = useDispatch();
 
@@ -15,15 +12,8 @@ const ProductTile = ({ tileType, currentId, relId }) => {
   let meta = {};
   const [tile, setTile] = useState({});
 
-  let target;
-  if (tileType === 'related') {
-    target = relId
-  } else if (tileType === 'outfit') {
-    target = currentId
-  }
-
   const fetchDetails = () => (
-    axios.get(`/products/${target}`)
+    axios.get(`/products/${id}`)
       .then(({data}) => {
         details = data;
         return data;
@@ -34,7 +24,7 @@ const ProductTile = ({ tileType, currentId, relId }) => {
   )
 
   const fetchStyles = () => (
-    axios.get(`/products/${target}/styles`)
+    axios.get(`/products/${id}/styles`)
       .then(({data}) => {
         styles = data.results;
         return data.results;
@@ -47,7 +37,7 @@ const ProductTile = ({ tileType, currentId, relId }) => {
   const fetchMeta = () => (
     axios.get('/reviews/meta', {
       params: {
-        product_id: target
+        product_id: id
       }
     })
       .then(({data}) => {
@@ -99,7 +89,6 @@ const ProductTile = ({ tileType, currentId, relId }) => {
     return payload;
   }
 
-
   useEffect(() => {
 
     fetchAllRelevantData()
@@ -109,12 +98,12 @@ const ProductTile = ({ tileType, currentId, relId }) => {
         return payload;
       })
       .then((payload) => {
-        if (tileType === 'related') {
+        if (fetchType === 'related') {
           dispatch({
             type: 'ADD_RELATED_PRODUCT',
             payload
           });
-        } else if (tileType === 'outfit') {
+        } else if (fetchType === 'outfit') {
           dispatch({
             type: 'ADD_USER_OUTFIT',
             payload
@@ -127,36 +116,13 @@ const ProductTile = ({ tileType, currentId, relId }) => {
 
   }, [])
 
-  return (
-    // each tile 184px + 5px column gap
-    <li className="tile">
+  return {
+    details,
+    styles,
+    meta,
+    tile
+  };
 
-      <div className="tile-img-container">
-        {tile.photos ?
-        <img className="tile-img" src={tile.photos[0].url || 'https://source.unsplash.com/200x100/?corgi'} alt={tile.name} width="150"/> :
-        <></>}
-      </div>
+}
 
-      <div className="tile-texts-container">
-        <div className="tile-category">{tile.category}</div>
-
-        <div className="tile-name">{tile.name}</div>
-
-        {tile.salePrice ?
-        <div className="tile-price-container">
-          <span className="tile-price sale-price">  {`$${tile.salePrice}`}</span>
-          <span className="tile-price full-price">{tile.defaultPrice}</span>
-        </div> :
-        <div className="tile-price">{tile.defaultPrice}</div>}
-      </div>
-      <StarRatings className="tile-stars" data={tile}/>
-
-
-    </li>
-  );
-
-};
-
-
-export default ProductTile;
-
+export default useFetchAndStore;
