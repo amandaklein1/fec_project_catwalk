@@ -1,5 +1,166 @@
+body {
+}
+
+#app {
+  margin: auto;
+  width: 90vw;
+}
+
+//// TILES ////
+
+.carousel-title {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.carousel-wrapper {
+  display: flex;
+  width: 55vw;
+  position: relative;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.prev-arrow {
+  z-index: 2;
+  position: absolute;
+  left: 1%;
+  top: 30%;
+  font-size: 50px;
+  color: white;
+}
+
+.next-arrow {
+  z-index: 2;
+  position: absolute;
+  left: 97%;
+  top: 30%;
+  font-size: 50px;
+  color: white;
+}
+
+.tiles {
+  list-style-type: none;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: scroll;
+  flex-wrap: nowrap;
+  scroll-snap-type: x mandatory;
+  column-gap: 12px;
+  scroll-behavior: smooth;
+  grid-area: 'mid';
+}
+
+.tile {
+  display: flex;
+  flex: 0 0 calc(200px - 1em);
+  border: rgb(197, 197, 197) solid 1px;
+  height: 40vh;
+  flex-direction: column;
+  scroll-snap-align: center;
+}
+
+.add-outfit-tile {
+  position: relative;
+}
+
+.add-outfit-circle {
+  display: block;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 1px solid rgb(161, 161, 161);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition-duration: 350ms;
+}
+
+.add-outfit-circle:hover {
+  border: 1px solid black;
+}
+
+.add-outfit-plus {
+  display: block;
+  font-size: 20px;
+  font-weight: 100;
+  color: gray;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.add-outfit-text {
+  display: block;
+  font-weight: 100;
+  font-size: 15px;
+  color: gray;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tile-img-container {
+  flex: 0 0 60%;
+  overflow: hidden;
+}
+
+.tile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tile-texts-container {
+  flex: 0 0 25%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 7px;
+}
+
+.tile-category {
+  flex: 0 0 35%;
+  color: rgb(122, 122, 122);
+  font-size: 0.7em;
+  text-transform: uppercase;
+}
+
+.tile-name {
+  flex: 0 0 25%;
+  margin-bottom: 5px;
+}
+
+.tile-price {
+  flex: 0 0 25%;
+  color: rgb(122, 122, 122);
+  font-size: 0.7em;
+}
+
+.sale-price {
+  color: red;
+}
+
+.full-price {
+  text-decoration: line-through;
+}
+
+.tile-stars {
+  flex: 0 0 25%;
+}
+
+//// StarRatings ////
+
 :root {
-  --star-size: 20px;
+  --star-size: 15px;
   --star-color: rgb(168, 168, 168);
   --star-background: rgb(24, 24, 24);
 }
@@ -10,7 +171,9 @@
   display: inline-block;
   font-family: Times;
   font-size: var(--star-size);
-  // line-height: 1;
+  flex: 0 0 10%;
+  margin-bottom: 5px;
+  margin-left: 6px;
 
   &::before {
     content: '★★★★★';

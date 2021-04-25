@@ -1,11 +1,60 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-restricted-syntax */
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
+import StarRatings from './tiles-subcomps/StarRatings';
+import useFetchAndStore from './tiles-subcomps/useFetchAndStore';
+
+
+const RelatedProductTile = ({ tileType, relId }) => {
+
+  const { details, styles, meta, tile } = useFetchAndStore('related', relId);
+
+  return (
+    <li className="tile">
+
+      <div className="tile-img-container">
+        {tile.photos ?
+        <img className="tile-img" src={tile.photos[0].url || 'https://source.unsplash.com/200x100/?corgi'} alt={tile.name} width="150"/> :
+        <></>}
+      </div>
+
+      <div className="tile-texts-container">
+        <div className="tile-category">{tile.category}</div>
+
+        <div className="tile-name">{tile.name}</div>
+
+        {tile.salePrice ?
+        <div className="tile-price-container">
+          <span className="tile-price sale-price">  {`$${tile.salePrice}`}</span>
+          <span className="tile-price full-price">{tile.defaultPrice}</span>
+        </div> :
+        <div className="tile-price">{tile.defaultPrice}</div>}
+      </div>
+      <StarRatings className="tile-stars" data={tile}/>
+
+    </li>
+  );
+
+};
+
+
+export default RelatedProductTile;
+
+
+
+
+
+/*
+
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import StarRatings from './tiles-subcomps/StarRatings';
 
 
-const RelatedProductTile = ({ currentId, relId }) => {
+const ProductTile = ({ tileType, currentId, relId }) => {
 
   const dispatch = useDispatch();
 
@@ -14,8 +63,15 @@ const RelatedProductTile = ({ currentId, relId }) => {
   let meta = {};
   const [tile, setTile] = useState({});
 
+  let target;
+  if (tileType === 'related') {
+    target = relId
+  } else if (tileType === 'outfit') {
+    target = currentId
+  }
+
   const fetchDetails = () => (
-    axios.get(`/products/${relId}`)
+    axios.get(`/products/${target}`)
       .then(({data}) => {
         details = data;
         return data;
@@ -26,7 +82,7 @@ const RelatedProductTile = ({ currentId, relId }) => {
   )
 
   const fetchStyles = () => (
-    axios.get(`/products/${relId}/styles`)
+    axios.get(`/products/${target}/styles`)
       .then(({data}) => {
         styles = data.results;
         return data.results;
@@ -39,7 +95,7 @@ const RelatedProductTile = ({ currentId, relId }) => {
   const fetchMeta = () => (
     axios.get('/reviews/meta', {
       params: {
-        product_id: relId
+        product_id: target
       }
     })
       .then(({data}) => {
@@ -75,7 +131,7 @@ const RelatedProductTile = ({ currentId, relId }) => {
     const payload = {
       name: details.name,
       category: details.category,
-      defaultPrice: details.default_price,
+      defaultPrice: `$${details.default_price}`,
       features: details.features,
       ratings: calcAvgRatings(meta.ratings),
       photos: styles[0].photos
@@ -91,7 +147,9 @@ const RelatedProductTile = ({ currentId, relId }) => {
     return payload;
   }
 
+
   useEffect(() => {
+
     fetchAllRelevantData()
       .then((result) => {
         const payload = createPayload();
@@ -99,36 +157,55 @@ const RelatedProductTile = ({ currentId, relId }) => {
         return payload;
       })
       .then((payload) => {
-        dispatch({
-          type: 'ADD_RELATED_PRODUCT',
-          payload
-        });
+        if (tileType === 'related') {
+          dispatch({
+            type: 'ADD_RELATED_PRODUCT',
+            payload
+          });
+        } else if (tileType === 'outfit') {
+          dispatch({
+            type: 'ADD_USER_OUTFIT',
+            payload
+          });
+        }
       })
       .catch((err) => {
         throw err;
       });
-    }, [])
+
+  }, [])
 
   return (
-    <li>
-      {
-        tile.photos ?
-        <img className="relatedProd-image" src={tile.photos[0].url || 'https://source.unsplash.com/200x100/?corgi'} alt={tile.name} width="150"/> :
-        <></>
-      }
-      <div>{tile.category}</div>
-      <div>{tile.name}</div>
-      {
-        tile.salePrice ?
-        <div>{tile.salePrice}</div> :
-        <div>{tile.defaultPrice}</div>
-      }
-      <StarRatings data={tile}/>
+    // each tile 184px + 5px column gap
+    <li className="tile">
+
+      <div className="tile-img-container">
+        {tile.photos ?
+        <img className="tile-img" src={tile.photos[0].url || 'https://source.unsplash.com/200x100/?corgi'} alt={tile.name} width="150"/> :
+        <></>}
+      </div>
+
+      <div className="tile-texts-container">
+        <div className="tile-category">{tile.category}</div>
+
+        <div className="tile-name">{tile.name}</div>
+
+        {tile.salePrice ?
+        <div className="tile-price-container">
+          <span className="tile-price sale-price">  {`$${tile.salePrice}`}</span>
+          <span className="tile-price full-price">{tile.defaultPrice}</span>
+        </div> :
+        <div className="tile-price">{tile.defaultPrice}</div>}
+      </div>
+      <StarRatings className="tile-stars" data={tile}/>
+
+
     </li>
   );
 
 };
 
 
-export default RelatedProductTile;
+export default ProductTile;
 
+*/
