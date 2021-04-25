@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 
@@ -10,6 +10,9 @@ function Cart({style}) {
   const [selectedQty, setQty] = useState('');
   const [skuDetail, setSkuDetail] = useState([]);
   const [selectedSizeAndQty, setSelectedSizeAndQty] = useState({});
+
+  const selectedSizeAndQtyRef = useRef({});
+  selectedSizeAndQtyRef.current = selectedSizeAndQty
 
   function getStyleInfo() {
     axios.get(`products/11001`)
@@ -28,7 +31,28 @@ function Cart({style}) {
 
   }
 
+
+
+  function getSizeAndQty(sizeIndex) {
+// skuDetail
+//     0: {quantity: 8, size: "XS"}
+// 1: {quantity: 16, size: "S"}
+// 2: {quantity: 17, size: "M"}
+// 3: {quantity: 10, size: "L"}
+// 4: {quantity: 15, size: "XL"}
+// 5: {quantity: 6, size: "XXL"}
+
+//selectedSizeAndQty
+{/* //{quantity: 15, size: "XL"} */}
+
+    setSelectedSizeAndQty(skuDetail[sizeIndex]);
+    assignSizeAndQty(selectedSizeAndQtyRef.current)
+
+  }
+
   function assignSizeAndQty(sizeQtyObj) {
+    // let sizeQtyObj = ;
+    console.log('oh boy: ', selectedSizeAndQtyRef.current)
     let qtyArray = [];
 
     if (sizeQtyObj !== undefined) {
@@ -44,23 +68,6 @@ function Cart({style}) {
   }
   setQtyBySize(qtyArray)
 }
-  }
-
-  function getSizeAndQty(sizeIndex) {
-// skuDetail
-//     0: {quantity: 8, size: "XS"}
-// 1: {quantity: 16, size: "S"}
-// 2: {quantity: 17, size: "M"}
-// 3: {quantity: 10, size: "L"}
-// 4: {quantity: 15, size: "XL"}
-// 5: {quantity: 6, size: "XXL"}
-
-//selectedSizeAndQty
-{/* //{quantity: 15, size: "XL"} */}
-
-    setSelectedSizeAndQty(skuDetail[sizeIndex]);
-    assignSizeAndQty(selectedSizeAndQty)
-
   }
 
 
