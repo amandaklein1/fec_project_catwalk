@@ -7,6 +7,7 @@ import StyleListContainer from '../containers/StyleListContainer';
 import StyleVisualContainer from '../containers/styleVisualContainer';
 import CartContainer from '../containers/cartContainer';
 import RelatedProducts from './components/RelatedProducts';
+import UserOutfit from './components/UserOutfit';
 
 
 class App extends React.Component {
@@ -38,7 +39,7 @@ class App extends React.Component {
         <h1>
           Project Catwalk App
         </h1>
-        <div className="productOverview">
+        {/* <div className="productOverview">
           <div className="shownImage">
             <StyleVisualContainer />
           </div>
@@ -50,8 +51,9 @@ class App extends React.Component {
           <CartContainer />
           </div>
           </div>
-        </div>
+        </div> */}
         <RelatedProducts />
+        <UserOutfit />
       </>
     );
   }
