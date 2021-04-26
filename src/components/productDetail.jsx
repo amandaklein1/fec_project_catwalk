@@ -15,7 +15,7 @@ function StyleList({styles, handleCurrentSkuTitleClick}) {
 
   useEffect(() => {
     getStyleInfo()
-  }, [])
+  }, [styles])
 
   return (
     <div className="styleInfoAndThumbs">

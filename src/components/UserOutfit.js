@@ -6,7 +6,7 @@ import useFetchAndStore from './tiles-subcomps/useFetchAndStore';
 import UserOutfitTile from './UserOutfitTile';
 
 
-const UserOutfit = () => {
+const UserOutfit = ({ changeCurrentProduct }) => {
 
   const [outfitIds, setOutfitIds] = useState([]);
   const currentProductId = useSelector(state => state.styleList.product_id);
@@ -14,7 +14,7 @@ const UserOutfit = () => {
   const { details, styles, meta, tile } = useFetchAndStore('outfit', outfitIds[outfitIds.length-1]);
 
   return (
-    <div>
+    <div id="user-outfit-widget">
       <span className="carousel-title">Your Outfit</span>
       <div className="carousel-wrapper">
 
@@ -23,7 +23,7 @@ const UserOutfit = () => {
           <AddOutfitTile outfitIds={outfitIds} updateOutfitIds={setOutfitIds} currentProductId={currentProductId}/>
 
           {outfitIds.map((id) => (
-            <UserOutfitTile outfitId={id} key={id}/>
+            <UserOutfitTile outfitId={id} key={id} changeCurrentProduct={changeCurrentProduct}/>
           ))}
 
         </ol>
