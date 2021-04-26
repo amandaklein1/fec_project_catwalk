@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Thumbnails from './thumbnails';
 import axios from 'axios';
+import Thumbnails from './thumbnails';
+
 
 function StyleList({styles, handleCurrentSkuTitleClick}) {
   const [styleInfo, setStyleInfo] = useState([]);
@@ -18,11 +19,14 @@ function StyleList({styles, handleCurrentSkuTitleClick}) {
   }, [])
 
   return (
-    <div>
-    {console.log(styleInfo)}
+    <div className="styleInfoAndThumbs">
+      <div className="styleInfo">
       <div>{styleInfo.category}</div>
+    <div>
       <h3>{styleInfo.name}</h3>
-      <div className="thumbnails">
+    </div>
+    </div>
+      <ul className="thumbnail-grid">
         {
           styles.results.map(style => (
             <Thumbnails
@@ -33,7 +37,7 @@ function StyleList({styles, handleCurrentSkuTitleClick}) {
             />
           ))
         }
-      </div>
+      </ul>
       </div>
   )
 }

@@ -39,21 +39,22 @@ class App extends React.Component {
         <h1>
           Project Catwalk App
         </h1>
-        {/* <div className="productOverview">
-          <div className="shownImage">
+        <div className="productOverview">
+          <div >
             <StyleVisualContainer />
           </div>
-          <div className="styleInfo">
-          <div className="thumbnailList">
+          <div>
+          <div>
           <StyleListContainer />
           </div>
-          <div className="cartList">
+          <div>
           <CartContainer />
           </div>
           </div>
-        </div> */}
+          </div>
         <RelatedProducts />
         <UserOutfit />
+
       </>
     );
   }
