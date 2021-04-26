@@ -1,11 +1,11 @@
 import React from 'react';
 // import { useSelector } from 'react-redux';
 
-const AddOutfitTile = ({ outfitIds, updateOutfitIds, currentProductId }) => {
+const AddOutfitTile = ({ outfitIds, setOutfitIds, currentProductId }) => {
 
   const handleAdd = () => {
     if (!outfitIds.includes(currentProductId)) {
-      updateOutfitIds([...outfitIds, currentProductId])
+      setOutfitIds([...outfitIds, currentProductId])
     }
   }
 

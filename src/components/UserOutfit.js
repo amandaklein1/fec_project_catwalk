@@ -20,10 +20,10 @@ const UserOutfit = ({ changeCurrentProduct }) => {
 
         <ol className="tiles">
 
-          <AddOutfitTile outfitIds={outfitIds} updateOutfitIds={setOutfitIds} currentProductId={currentProductId}/>
+          <AddOutfitTile outfitIds={outfitIds} setOutfitIds={setOutfitIds} currentProductId={currentProductId}/>
 
           {outfitIds.map((id) => (
-            <UserOutfitTile outfitId={id} key={id} changeCurrentProduct={changeCurrentProduct}/>
+            <UserOutfitTile outfitId={id} key={id} changeCurrentProduct={changeCurrentProduct} outfitIds={outfitIds} setOutfitIds={setOutfitIds} currentProductId={currentProductId}/>
           ))}
 
         </ol>
