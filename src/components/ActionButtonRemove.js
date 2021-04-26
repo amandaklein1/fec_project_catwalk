@@ -8,7 +8,7 @@ const ActionButtonRemove = ({ outfitId, outfitIds, setOutfitIds }) => {
   }
 
   return (
-    <span className="action-button-remove" onClick={handleRemove}>x</span>
+    <span className="action-button-remove" onClick={handleRemove}>&#735;</span>
   );
 
 }
