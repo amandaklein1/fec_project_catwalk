@@ -8,6 +8,7 @@ const useFetchAndStore = (fetchType, id) => {
   const dispatch = useDispatch();
 
   let details = {};
+  // const [details2, setDetails2] = useState({});
   let styles = [];
   let meta = {};
   const [tile, setTile] = useState({});
@@ -16,6 +17,7 @@ const useFetchAndStore = (fetchType, id) => {
     axios.get(`/products/${id}`)
       .then(({data}) => {
         details = data;
+        // setDetails2(data)
         return data;
       })
       .catch((err) => {
