@@ -19,37 +19,49 @@ h1 {
 
 .thumbnailImg {
   /* vertical-align: middle; */
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
 }
 
 .productOverview {
   width: 100%;
-  height: 100vh;
+  height: 50%;
   display: flex;
   flex-direction: row;
   gap: 20px;
   justify-content: space-evenly;
+  padding: 15px;
 }
 
-.styleInfo {
+/* .styleInfo {
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
+} */
 
-.thumbnails {
-  font-size: 5px;
+.thumbnail-grid {
   display: flex;
-  flex-direction: row;
-  gap: 5px;
-}
-
-.thumbnailList {
+  /* flex-direction: column; */
+  flex-wrap: wrap;
   width: 100%;
   min-height: 20%;
 }
+
+.thumbnail-grid li {
+  width: 25%;
+  font-size: 5px;
+  /* gap: 2px; */
+  list-style: none;
+  padding: 5px;
+}
+
+.thumbnail-grid .title {
+  position: relative;
+  /* width: 50%; */
+
+}
+
 
 .salePrice {
   color: red;
@@ -63,7 +75,7 @@ h1 {
   display: flex;
   flex-direction: row;
   gap: 5px;
-  font-size: 15px;
+  font-size: 10px;
 }
 
 .sizeOptions {
@@ -74,5 +86,37 @@ h1 {
 }
 
 .styleDescription {
-  font-size: 15px;
+  font-size: 10px;
 }
+
+.currentStyleMain {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+}
+
+.styleInfoAndThumbs{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.styleInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.currentVisualMain {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.largeImage {
+  /* vertical-align: middle; */
+  width: 50px;
+  height: 50px;
+}
+

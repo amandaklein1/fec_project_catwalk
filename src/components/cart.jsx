@@ -1,35 +1,33 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-/*
-Issues as I understand:
-- when user selects size, the available QTYs do not populate immediately
-
-
-*/
-
 function Cart({style}) {
-  // API call to GET /products/id
-  const [styleInfo, setStyleInfo] = useState([]);
 
-  // user selected size
-  const [selectedSize, setSize] = useState('');
-  // ...updates qtys available in that size
-  const [qtyBySize, setQtyBySize] = useState([]);
-  // user selected qty to check out
-  const [selectedQty, setQty] = useState('');
-  // all available sizes and qtys of that SKU
-  const [skuDetail, setSkuDetail] = useState([]);
-  // when size selected, updates with {qty 16, size S}
+  const [skuDetailByColor, setSkuDetailByColor] = useState({
+    mainStyleInfo: [],
+    skusByColor: [],
+    sizesAndQtyByColor: [],
+    qtyBySize: [],
+  })
+
+  const [userSelections, setUserSelections] = useState({
+    sku: '',
+    qty: '',
+    size: ''
+  })
+
+
 
   let selectedSizeQty = {};
+  let selectedSkuVar = '';
 
 
   function getStyleInfo() {
     axios.get(`products/11001`)
       .then(({data}) => (
-        setStyleInfo(data)
+        setSkuDetailByColor(prevState => ({ ...prevState, "mainStyleInfo": data}))
+        // setStyleInfo(data)
 
       ))
       .catch((err) => {
@@ -37,38 +35,58 @@ function Cart({style}) {
       })
   }
 
+
   function getSkuDetail(skus) {
 
-    setSkuDetail(Object.values(skus))
+    setSkuDetailByColor(prevState => ({ ...prevState, "sizesAndQtyByColor": Object.values(skus), "skusByColor": Object.keys(skus)}))
+
+
 
   }
 
 
-  function assignSizeAndQty(sizeQtyObj) {
-    let qtyArray = [];
+  function assignSizeAndQty(sizeQtyObj, sku) {
+    const qtyArray = [];
 
     if (sizeQtyObj !== undefined) {
-      setSize(sizeQtyObj.size);
+      setUserSelections(prevState => ({ ...prevState, "sku": sku, "size": sizeQtyObj.size, "qty": ''}))
     if (sizeQtyObj.quantity > 15) {
-      for(let i = 1; i < 15; i++) {
+      for(let i = 1; i < 16; i++) {
       qtyArray.push(i);
     }
     } else {
-      for(let i = 1; i < sizeQtyObj.quantity; i++) {
+      for(let i = 1; i < (sizeQtyObj.quantity + 1); i++) {
         qtyArray.push(i);
       }
     }
-      setQtyBySize(qtyArray)
+
+      setSkuDetailByColor(prevState => ({ ...prevState, "qtyBySize": qtyArray}))
     }
   }
 
   function getSizeAndQty(sizeIndex) {
-    setSelectedSizeAndQty(skuDetail[sizeIndex]);
-    selectedSizeQty = skuDetail[sizeIndex];
 
-    // assignSizeAndQty(selectedSizeAndQty)
-    assignSizeAndQty(selectedSizeQty)
+    selectedSizeQty = skuDetailByColor.sizesAndQtyByColor[sizeIndex];
+    selectedSkuVar = skuDetailByColor.skusByColor[sizeIndex];
 
+    assignSizeAndQty(selectedSizeQty, selectedSkuVar)
+
+  }
+
+  function sendOrder(sku, qty) {
+    console.log('my sku: ', sku);
+    console.log('my qty: ', qty)
+
+    if (sku && qty) {
+    axios.post('/cart', {
+      sku_id: sku,
+      count: qty
+    })
+    .then((response) => {
+      console.log('this is my post request: ', response)
+      setUserSelections(prevState => ({ ...prevState, "sku": '', "size": '', "qty": ''}))
+    })
+  }
   }
 
 
@@ -77,20 +95,17 @@ function Cart({style}) {
   useEffect(() => {
     getStyleInfo() // fetch prod desc by id
     getSkuDetail(style.skus) // all qty/size combos
-    // assignSizeAndQty()
-    // getSizeAndQty()
 
-  }, [])
+  }, [style.style_id])
 
 
 
 
   return (
-    !style ? <div>Please wait...</div> :
     <div className="currentStyleMain">
       <div>
         {console.log('this is my cart: ',
-        skuDetail
+        skuDetailByColor
         )}
 
       </div>
@@ -107,32 +122,34 @@ function Cart({style}) {
 
       <div className="sizeOptions">
       <div className="dropdown">
-        <select value={selectedSize} onChange={e => getSizeAndQty(e.target.value)}>
+        <select value={userSelections.size} onChange={e => getSizeAndQty(e.target.value)}>
           <option>Select a size...</option>
-          {skuDetail.map((sku, index) => (
-            <option key={sku.size} name={sku.quantity} value={index}>
+          {skuDetailByColor.sizesAndQtyByColor.map((sku, index) => (
+            <option key={index} name={sku.quantity} value={index}>
               {sku.size}
             </option>
           ))}
         </select>
-        {console.log('this is my size: ', selectedSize)}
-        {console.log('this is my qty: ', qtyBySize)}
-        {console.log('this is my size and qty: ', selectedSizeQty)}
+        {console.log('this is my size: ', userSelections.size)}
+        {console.log('this is my qtyArray: ', skuDetailByColor.qtyBySize)}
+        {console.log('this is my qty: ', userSelections.qty)}
+
       </div>
-      <select value={selectedQty} onChange={e => setQty(e.target.value)}>
+      <select value={userSelections.qty} onChange={e => setUserSelections(prevState => ({ ...prevState, "qty": e.target.value}))}>
           <option>QTY</option>
-          {qtyBySize.map((qty) => (
+          {skuDetailByColor.qtyBySize.map((qty) => (
             <option key={qty} value={qty}>
               {qty}
             </option>
           ))}
         </select>
       </div>
-      <button>
+      <button type="button" onClick={() => {sendOrder(userSelections.sku, userSelections.qty)}}>
         Add To Bag
       </button>
-      <p className="styleDescription">{styleInfo.description}</p>
+      <p className="styleDescription">{skuDetailByColor.mainStyleInfo.description}</p>
   </div>
+
   )
 }
 
