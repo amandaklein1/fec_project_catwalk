@@ -1,8 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
 function Cart({style}) {
+
+  const myId = useSelector(state => state.styleList.product_id);
 
   const [skuDetailByColor, setSkuDetailByColor] = useState({
     mainStyleInfo: [],
@@ -19,12 +22,12 @@ function Cart({style}) {
 
 
 
-  let selectedSizeQty = {};
-  let selectedSkuVar = '';
+  // let selectedSizeQty = {};
+  // let selectedSkuVar = '';
 
 
   function getStyleInfo() {
-    axios.get(`products/11001`)
+    axios.get(`products/${myId}`)
       .then(({data}) => (
         setSkuDetailByColor(prevState => ({ ...prevState, "mainStyleInfo": data}))
         // setStyleInfo(data)
@@ -66,10 +69,10 @@ function Cart({style}) {
 
   function getSizeAndQty(sizeIndex) {
 
-    selectedSizeQty = skuDetailByColor.sizesAndQtyByColor[sizeIndex];
-    selectedSkuVar = skuDetailByColor.skusByColor[sizeIndex];
+    // selectedSizeQty = skuDetailByColor.sizesAndQtyByColor[sizeIndex];
+    // selectedSkuVar = skuDetailByColor.skusByColor[sizeIndex];
 
-    assignSizeAndQty(selectedSizeQty, selectedSkuVar)
+    assignSizeAndQty(skuDetailByColor.sizesAndQtyByColor[sizeIndex], skuDetailByColor.skusByColor[sizeIndex])
 
   }
 
@@ -95,6 +98,7 @@ function Cart({style}) {
   useEffect(() => {
     getStyleInfo() // fetch prod desc by id
     getSkuDetail(style.skus) // all qty/size combos
+    setUserSelections({ "sku": '', "size": '', "qty": ''})
 
   }, [style.style_id])
 
@@ -132,7 +136,7 @@ function Cart({style}) {
         </select>
         {console.log('this is my size: ', userSelections.size)}
         {console.log('this is my qtyArray: ', skuDetailByColor.qtyBySize)}
-        {console.log('this is my qty: ', userSelections.qty)}
+        {console.log('this is my qty: ', skuDetailByColor.sizesAndQtyByColor)}
 
       </div>
       <select value={userSelections.qty} onChange={e => setUserSelections(prevState => ({ ...prevState, "qty": e.target.value}))}>

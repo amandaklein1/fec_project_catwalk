@@ -10,7 +10,6 @@ function StyleList({styles, handleCurrentSkuTitleClick}) {
     axios.get(`products/${styles.product_id}`)
       .then(({data}) => (
         setStyleInfo(data)
-
       ))
   }
 
@@ -20,6 +19,7 @@ function StyleList({styles, handleCurrentSkuTitleClick}) {
 
   return (
     <div className="styleInfoAndThumbs">
+      {console.log('What is happening: ', styles)}
       <div className="styleInfo">
       <div>{styleInfo.category}</div>
     <div>
