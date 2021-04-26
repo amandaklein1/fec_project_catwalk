@@ -1,6 +1,7 @@
 /* eslint-disable class-methods-use-this */
 
-import React from "react";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { hot } from 'react-hot-loader/root';
 import axios from 'axios';
 import StyleListContainer from '../containers/StyleListContainer';
@@ -10,6 +11,45 @@ import RelatedProducts from './components/RelatedProducts';
 import UserOutfit from './components/UserOutfit';
 
 
+const App = () => {
+
+  const [currentProduct, setCurrentProduct] = useState('');
+
+  const changeCurrentProduct = (newProductId) => {
+    console.log('setting new product ID in App.jsx');
+    setCurrentProduct(newProductId);
+  }
+
+  return (
+    <>
+      <h1>
+        Project Catwalk App
+      </h1>
+      <div className="productOverview">
+        <div >
+          <StyleVisualContainer />
+        </div>
+        <div>
+        <div>
+        <StyleListContainer />
+        </div>
+        <div>
+        <CartContainer />
+        </div>
+        </div>
+        </div>
+      <RelatedProducts changeCurrentProduct={changeCurrentProduct}/>
+      <UserOutfit changeCurrentProduct={changeCurrentProduct}/>
+
+    </>
+  );
+}
+
+export default App;
+
+
+/*
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -17,21 +57,6 @@ class App extends React.Component {
 
     }
   }
-
-  handleTestCall() {
-    axios.get('/reviews/meta', {
-      params: {
-        product_id: 11003
-      }
-    })
-      .then(({data}) => {
-        console.log(data)
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
-
 
   render() {
     return (
@@ -61,3 +86,6 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+*/

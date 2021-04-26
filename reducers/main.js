@@ -5,6 +5,7 @@ import relatedStyles from './relatedStyles';
 import outfit from './outfit';
 import relatedProductsReducer from './relatedProducts';
 import userOutfitsReducer from './userOutfits';
+import currentProductReducer from './currentProduct';
 
 const rootReducer = combineReducers({
   styleList,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   relatedStyles,
   outfit,
   relatedProducts: relatedProductsReducer,
-  userOutfits: userOutfitsReducer
+  userOutfits: userOutfitsReducer,
+  currentProduct: currentProductReducer
 
 });
 

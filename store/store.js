@@ -7,7 +7,7 @@ export default createStore(
   rootReducer,
   {
     styleList: {
-      product_id: '11003',
+      product_id: '11004',
       results: [
         {
           style_id: 51158,

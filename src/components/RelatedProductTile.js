@@ -7,12 +7,12 @@ import StarRatings from './tiles-subcomps/StarRatings';
 import useFetchAndStore from './tiles-subcomps/useFetchAndStore';
 
 
-const RelatedProductTile = ({ tileType, relId }) => {
+const RelatedProductTile = ({ tileType, relId, changeCurrentProduct }) => {
 
   const { details, styles, meta, tile } = useFetchAndStore('related', relId);
 
   return (
-    <li className="tile">
+    <li className="tile" onClick={() => changeCurrentProduct(relId)}>
 
       <div className="tile-img-container">
         {tile.photos ?

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import RelatedProductTile from './RelatedProductTile';
 
-const RelatedProducts = () => {
+const RelatedProducts = ({ changeCurrentProduct }) => {
 
   const [relatedIds, setRelatedIds] = useState([]);
   const [scrollPos, setScrollPos] = useState(0);
@@ -42,7 +42,7 @@ const RelatedProducts = () => {
 
         <ol id="RP-carousel" className="tiles">
           {relatedIds.map((id) => (
-            <RelatedProductTile tileType='related' relId={id} key={id}/>
+            <RelatedProductTile tileType='related' relId={id} key={id} changeCurrentProduct={changeCurrentProduct}/>
           ))}
         </ol>
 

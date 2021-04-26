@@ -3,12 +3,12 @@ import { useSelector } from 'react-redux';
 import StarRatings from './tiles-subcomps/StarRatings';
 import useFetchAndStore from './tiles-subcomps/useFetchAndStore';
 
-const UserOutfitTile = ({ outfitId }) => {
+const UserOutfitTile = ({ outfitId, changeCurrentProduct }) => {
 
   const { details, styles, meta, tile } = useFetchAndStore('outfit', outfitId);
 
   return (
-    <li className="tile">
+    <li className="tile" onClick={() => changeCurrentProduct(outfitId)}>
 
       <div className="tile-img-container">
         {tile.photos ?
