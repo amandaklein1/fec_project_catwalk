@@ -14,7 +14,7 @@ const UserOutfit = ({ changeCurrentProduct }) => {
   const { details, styles, meta, tile } = useFetchAndStore('outfit', outfitIds[outfitIds.length-1]);
 
   return (
-    <div>
+    <div id="user-outfit-widget">
       <span className="carousel-title">Your Outfit</span>
       <div className="carousel-wrapper">
 

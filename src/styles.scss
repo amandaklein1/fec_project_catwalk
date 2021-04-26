@@ -3,21 +3,35 @@ body {
 
 #app {
   margin: auto;
-  width: 90vw;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#related-products-widget {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+}
+
+#user-outfit-widget {
+  margin-bottom: 50px;
 }
 
 //// TILES ////
 
 .carousel-title {
   display: block;
+  margin-top: 50px;
   margin-bottom: 20px;
 }
 
 .carousel-wrapper {
   display: flex;
-  width: 55vw;
+  width: 65vw;
   position: relative;
-  margin-bottom: 50px;
   position: relative;
 }
 
@@ -58,11 +72,12 @@ body {
 
 .tile {
   display: flex;
+  flex-direction: column;
   flex: 0 0 calc(200px - 1em);
   border: rgb(197, 197, 197) solid 1px;
   height: 40vh;
-  flex-direction: column;
   scroll-snap-align: center;
+  position: relative;
 }
 
 .add-outfit-tile {

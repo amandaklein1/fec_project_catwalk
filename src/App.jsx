@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { hot } from 'react-hot-loader/root';
 import axios from 'axios';
 import StyleListContainer from '../containers/StyleListContainer';
@@ -13,12 +13,27 @@ import UserOutfit from './components/UserOutfit';
 
 const App = () => {
 
-  const [currentProduct, setCurrentProduct] = useState('');
+  const dispatch = useDispatch();
+  const [currentProduct, setCurrentProduct] = useState('11001');
 
   const changeCurrentProduct = (newProductId) => {
-    console.log('setting new product ID in App.jsx');
+    console.log('updating current product');
     setCurrentProduct(newProductId);
+
   }
+
+  useEffect(() => {
+    axios.get(`/products/${currentProduct}/styles`)
+    .then(({data}) => {
+      dispatch({
+        type: 'CHANGE_STYLE_LIST',
+        styleList: data
+      });
+    })
+    .catch((err) => {
+      throw err;
+    });
+  });
 
   return (
     <>
