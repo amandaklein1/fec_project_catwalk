@@ -8,10 +8,12 @@ const useFetchAndStore = (fetchType, id) => {
   const dispatch = useDispatch();
 
   let details = {};
-  // const [details2, setDetails2] = useState({});
   let styles = [];
   let meta = {};
   const [tile, setTile] = useState({});
+
+  const savedOutfits = useSelector(state => state.userOutfits);
+  const pluckedIds = savedOutfits.map(outfit => outfit.id);
 
   const fetchDetails = () => (
     axios.get(`/products/${id}`)
@@ -73,6 +75,7 @@ const useFetchAndStore = (fetchType, id) => {
     }
 
     const payload = {
+      id: details.id,
       name: details.name,
       category: details.category,
       defaultPrice: `$${details.default_price}`,
@@ -96,7 +99,7 @@ const useFetchAndStore = (fetchType, id) => {
     if (id) {
       console.log('-- useFetchAndStore called --');
       fetchAllRelevantData()
-        .then((result) => {
+        .then(() => {
           const payload = createPayload();
           setTile(payload);
           return payload;
@@ -107,7 +110,8 @@ const useFetchAndStore = (fetchType, id) => {
               type: 'ADD_RELATED_PRODUCT',
               payload
             });
-          } else if (fetchType === 'outfit') {
+          }
+          else if (fetchType === 'outfit' && !pluckedIds.includes(payload.id)) {
             dispatch({
               type: 'ADD_USER_OUTFIT',
               payload
