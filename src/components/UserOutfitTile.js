@@ -2,17 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import StarRatings from './tiles-subcomps/StarRatings';
 import useFetchAndStore from './tiles-subcomps/useFetchAndStore';
+import ActionButtonRemove from './ActionButtonRemove';
 
-const UserOutfitTile = ({ outfitId, changeCurrentProduct }) => {
+
+const UserOutfitTile = ({ outfitId, outfitIds, changeCurrentProduct, setOutfitIds }) => {
 
   const { details, styles, meta, tile } = useFetchAndStore('outfit', outfitId);
 
   return (
-    <li className="tile" onClick={() => changeCurrentProduct(outfitId)}>
+    <li className="tile">
 
       <div className="tile-img-container">
+        <ActionButtonRemove setOutfitIds={setOutfitIds} outfitId={outfitId} outfitIds={outfitIds}/>
         {tile.photos ?
-        <img className="tile-img" src={tile.photos[0].url || 'https://source.unsplash.com/200x100/?corgi'} alt={tile.name} width="150"/> :
+        <img className="tile-img" src={tile.photos[0].url || 'https://source.unsplash.com/300x200/?sunglasses'} alt={tile.name} width="150" onClick={() => changeCurrentProduct(outfitId)}/> :
         <></>}
       </div>
 
@@ -37,3 +40,5 @@ const UserOutfitTile = ({ outfitId, changeCurrentProduct }) => {
 
 
 export default UserOutfitTile;
+
+
