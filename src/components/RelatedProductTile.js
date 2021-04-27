@@ -16,7 +16,7 @@ const RelatedProductTile = ({ tileType, relId, changeCurrentProduct }) => {
 
       <div className="tile-img-container">
         {tile.photos ?
-        <img className="tile-img" src={tile.photos[0].url || 'https://source.unsplash.com/200x100/?corgi'} alt={tile.name} width="150"/> :
+        <img className="tile-img" src={tile.photos[0].url || 'https://source.unsplash.com/300x200/?sunglasses'} alt={tile.name} width="150"/> :
         <></>}
       </div>
 

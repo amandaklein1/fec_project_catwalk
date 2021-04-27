@@ -8,10 +8,17 @@ import UserOutfitTile from './UserOutfitTile';
 
 const UserOutfit = ({ changeCurrentProduct }) => {
 
-  const [outfitIds, setOutfitIds] = useState([]);
+
+  const savedOutfits = useSelector(state => state.userOutfits);
+  const pluckedIds = savedOutfits.map(outfit => outfit.id);
+
+  const [outfitIds, setOutfitIds] = useState([...pluckedIds]);
+
   const currentProductId = useSelector(state => state.styleList.product_id);
 
-  const { details, styles, meta, tile } = useFetchAndStore('outfit', outfitIds[outfitIds.length-1]);
+  console.log('about to add user outfit again');
+  useFetchAndStore('outfit', outfitIds[outfitIds.length-1]);
+
 
   return (
     <div id="user-outfit-widget">
@@ -35,3 +42,4 @@ const UserOutfit = ({ changeCurrentProduct }) => {
 }
 
 export default UserOutfit;
+

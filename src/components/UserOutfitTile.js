@@ -4,6 +4,7 @@ import StarRatings from './tiles-subcomps/StarRatings';
 import useFetchAndStore from './tiles-subcomps/useFetchAndStore';
 import ActionButtonRemove from './ActionButtonRemove';
 
+
 const UserOutfitTile = ({ outfitId, outfitIds, changeCurrentProduct, setOutfitIds }) => {
 
   const { details, styles, meta, tile } = useFetchAndStore('outfit', outfitId);
@@ -14,7 +15,7 @@ const UserOutfitTile = ({ outfitId, outfitIds, changeCurrentProduct, setOutfitId
       <div className="tile-img-container">
         <ActionButtonRemove setOutfitIds={setOutfitIds} outfitId={outfitId} outfitIds={outfitIds}/>
         {tile.photos ?
-        <img className="tile-img" src={tile.photos[0].url || 'https://source.unsplash.com/200x100/?corgi'} alt={tile.name} width="150" onClick={() => changeCurrentProduct(outfitId)}/> :
+        <img className="tile-img" src={tile.photos[0].url || 'https://source.unsplash.com/300x200/?sunglasses'} alt={tile.name} width="150" onClick={() => changeCurrentProduct(outfitId)}/> :
         <></>}
       </div>
 
@@ -39,3 +40,5 @@ const UserOutfitTile = ({ outfitId, outfitIds, changeCurrentProduct, setOutfitId
 
 
 export default UserOutfitTile;
+
+
