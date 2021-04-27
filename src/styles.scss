@@ -3,7 +3,7 @@ body {
 
 #app {
   margin: auto;
-  width: 80vw;
+  width: 90vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,6 +46,7 @@ body {
   top: 30%;
   font-size: 50px;
   color: white;
+  background-color: transparent;
 }
 
 .next-arrow {
@@ -55,6 +56,7 @@ body {
   top: 30%;
   font-size: 50px;
   color: white;
+  background-color: transparent;
 }
 
 .tiles {
@@ -147,11 +149,13 @@ body {
   color: rgb(122, 122, 122);
   font-size: 0.7em;
   text-transform: uppercase;
+  font-family: 'Alegreya Sans SC', sans-serif;
 }
 
 .tile-name {
   flex: 0 0 25%;
   margin-bottom: 5px;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .tile-price {

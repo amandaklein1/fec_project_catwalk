@@ -37,14 +37,16 @@ const App = () => {
 
   return (
     <>
+    <div className="logo">
       <h1>
         Project Catwalk App
       </h1>
+      </div>
       <div className="productOverview">
         <div >
           <StyleVisualContainer />
         </div>
-        <div>
+        <div className="rightSide">
         <div>
         <StyleListContainer />
         </div>

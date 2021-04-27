@@ -2,6 +2,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  background-color: white;
 }
 
 body {
@@ -17,6 +18,7 @@ h1 {
   background-color: black;
 }
 
+
 .thumbnailImg {
   /* vertical-align: middle; */
   width: 25px;
@@ -26,12 +28,16 @@ h1 {
 
 .productOverview {
   width: 100%;
-  height: 50%;
+  height: 25%;
   display: flex;
   flex-direction: row;
-  gap: 20px;
-  justify-content: space-evenly;
+  gap: 40px;
   padding: 15px;
+
+}
+
+.rightSide {
+  width: 40%;
 }
 
 /* .styleInfo {
@@ -50,15 +56,19 @@ h1 {
 
 .thumbnail-grid li {
   width: 25%;
-  font-size: 5px;
+
   /* gap: 2px; */
   list-style: none;
   padding: 5px;
 }
 
 .thumbnail-grid .title {
+  font-size: 5px;
   position: relative;
-  /* width: 50%; */
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 13px;
 }
 
 .salePrice {
@@ -83,8 +93,14 @@ h1 {
   font-size: 15px;
 }
 
+.styleSlogan {
+  font-size: 13px;
+  font-family: 'Lato', sans-serif;
+}
+
 .styleDescription {
   font-size: 10px;
+  font-family: 'Lato', sans-serif;
 }
 
 .currentStyleMain {
@@ -94,6 +110,7 @@ h1 {
 }
 
 .styleInfoAndThumbs {
+  width: 50%;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -102,7 +119,7 @@ h1 {
 .styleInfo {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 2px;
 }
 
 .currentVisualMain {
@@ -111,8 +128,54 @@ h1 {
   gap: 5px;
 }
 
-.largeImage {
+.mainImageTiles {
   /* vertical-align: middle; */
   width: 50px;
   height: 50px;
+  object-fit: cover;
+  box-shadow: 2px 2px 5px black;
+}
+
+.mainImage {
+  /* vertical-align: middle; */
+  width: 400px;
+  height: 500px;
+  object-fit: cover;
+  position: relative;
+}
+
+.scroll {
+  height: 375px;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  gap: 10px;
+  position: absolute;
+  padding: 10px;
+  background-color: transparent;
+
+}
+
+.button {
+  width: 90px;
+  height: 20px;
+  transition-duration: 0.4s;
+  background-color: rgb(133, 150, 182);
+  border-radius: 5px;
+  font-size: 12px;
+  border-style: none;
+
+}
+
+.button:hover {
+  background-color: rgb(118, 134, 163);;
+}
+
+.category {
+  font-size: 10px;
+  font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.styleTitle {
+  font-family: 'Roboto Condensed', sans-serif;
 }
