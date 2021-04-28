@@ -3,10 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import Modal from 'react-modal';
 import RelatedProductTile from './RelatedProductTile';
 
-Modal.setAppElement('#app');
 
 const RelatedProducts = ({ changeCurrentProduct }) => {
 
@@ -14,7 +12,6 @@ const RelatedProducts = ({ changeCurrentProduct }) => {
   const [scrollPos, setScrollPos] = useState(0);
   const currentProductId = useSelector(state => state.styleList.product_id); // string 11001
 
-  const [modalOpen, setModalOpen] = useState(false);
 
   const fetchRelatedProductsIds = () => {
     axios.get(`/products/${currentProductId}/related`)
@@ -49,7 +46,7 @@ const RelatedProducts = ({ changeCurrentProduct }) => {
           <div className="carousel-wrapper">
             <ol id="RP-carousel" className="tiles">
               {relatedIds.map((id) => (
-                <RelatedProductTile tileType='related' relId={id} key={id} changeCurrentProduct={changeCurrentProduct} setModalOpen={setModalOpen}/>
+                <RelatedProductTile tileType='related' relId={id} key={id} changeCurrentProduct={changeCurrentProduct}/>
               ))}
             </ol>
 
@@ -62,11 +59,6 @@ const RelatedProducts = ({ changeCurrentProduct }) => {
           </div>
         </div>
       </div>
-      <Modal
-        isOpen={modalOpen}
-        onRequestClose={() => setModalOpen(false)}>
-        <p>Modal window</p>
-      </Modal>
     </>
   );
 };

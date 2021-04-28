@@ -3,13 +3,21 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
+import Modal from 'react-modal';
 import StarRatings from './tiles-subcomps/StarRatings';
 import useFetchAndStore from './tiles-subcomps/useFetchAndStore';
+import ModalContent from './ModalContent';
 
+Modal.setAppElement('#app');
 
-const RelatedProductTile = ({ tileType, relId, changeCurrentProduct, setModalOpen}) => {
+const RelatedProductTile = ({ tileType, relId, changeCurrentProduct }) => {
 
-  const { details, styles, meta, tile } = useFetchAndStore('related', relId);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  // fetches related product's information & store to redux state
+  const { tile } = useFetchAndStore('related', relId);
+  // fetches current product's information
+  const currentProdTile = useFetchAndStore('current', 11001);
 
   return (
     <>
@@ -50,6 +58,14 @@ const RelatedProductTile = ({ tileType, relId, changeCurrentProduct, setModalOpe
         </div> :
         <></>
       }
+      <Modal
+        isOpen={modalOpen}
+        onRequestClose={() => setModalOpen(false)}>
+        <ModalContent
+          related={tile}
+          current={currentProdTile.tile}
+        />
+      </Modal>
     </>
 
 

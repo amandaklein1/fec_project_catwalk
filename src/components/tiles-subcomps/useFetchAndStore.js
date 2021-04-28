@@ -126,9 +126,6 @@ const useFetchAndStore = (fetchType, id) => {
   }, [])
 
   return {
-    details,
-    styles,
-    meta,
     tile
   };
 
