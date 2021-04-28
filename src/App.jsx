@@ -37,25 +37,24 @@ const App = () => {
 
   return (
     <>
-    <div className="logo">
-      <h1>
-        PepManda
-      </h1>
+      <div className="logo">
+        <h1>
+          PepManda
+        </h1>
       </div>
+
       <div className="productOverview">
-        <div >
-          <StyleVisualContainer />
-        </div>
+        <StyleVisualContainer />
         <div className="rightSide">
-        <div>
-        <StyleListContainer />
+          <StyleListContainer />
+          <div>
+            <CartContainer />
+          </div>
         </div>
-        <div>
-        <CartContainer />
-        </div>
-        </div>
-        </div>
+      </div>
+
       <RelatedProducts changeCurrentProduct={changeCurrentProduct}/>
+
       <UserOutfit changeCurrentProduct={changeCurrentProduct}/>
 
     </>
@@ -63,46 +62,3 @@ const App = () => {
 }
 
 export default App;
-
-
-/*
-
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-
-    }
-  }
-
-  render() {
-    return (
-      <>
-        <h1>
-          Project Catwalk App
-        </h1>
-        <div className="productOverview">
-          <div >
-            <StyleVisualContainer />
-          </div>
-          <div>
-          <div>
-          <StyleListContainer />
-          </div>
-          <div>
-          <CartContainer />
-          </div>
-          </div>
-          </div>
-        <RelatedProducts />
-        <UserOutfit />
-
-      </>
-    );
-  }
-}
-
-export default App;
-
-
-*/
