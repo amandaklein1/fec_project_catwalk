@@ -1,8 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
 function Cart({style}) {
+
+  const myId = useSelector(state => state.styleList.product_id);
 
   const [skuDetailByColor, setSkuDetailByColor] = useState({
     mainStyleInfo: [],
@@ -18,13 +21,12 @@ function Cart({style}) {
   })
 
 
-
-  let selectedSizeQty = {};
-  let selectedSkuVar = '';
+  // let selectedSizeQty = {};
+  // let selectedSkuVar = '';
 
 
   function getStyleInfo() {
-    axios.get(`products/11001`)
+    axios.get(`products/${myId}`)
       .then(({data}) => (
         setSkuDetailByColor(prevState => ({ ...prevState, "mainStyleInfo": data}))
         // setStyleInfo(data)
@@ -40,8 +42,6 @@ function Cart({style}) {
 
     setSkuDetailByColor(prevState => ({ ...prevState, "sizesAndQtyByColor": Object.values(skus), "skusByColor": Object.keys(skus)}))
 
-
-
   }
 
 
@@ -49,7 +49,7 @@ function Cart({style}) {
     const qtyArray = [];
 
     if (sizeQtyObj !== undefined) {
-      setUserSelections(prevState => ({ ...prevState, "sku": sku, "size": sizeQtyObj.size, "qty": ''}))
+      setUserSelections(prevState => ({ ...prevState, "sku": sku, "size": sizeQtyObj.size, "qty": 1}))
     if (sizeQtyObj.quantity > 15) {
       for(let i = 1; i < 16; i++) {
       qtyArray.push(i);
@@ -66,10 +66,7 @@ function Cart({style}) {
 
   function getSizeAndQty(sizeIndex) {
 
-    selectedSizeQty = skuDetailByColor.sizesAndQtyByColor[sizeIndex];
-    selectedSkuVar = skuDetailByColor.skusByColor[sizeIndex];
-
-    assignSizeAndQty(selectedSizeQty, selectedSkuVar)
+    assignSizeAndQty(skuDetailByColor.sizesAndQtyByColor[sizeIndex], skuDetailByColor.skusByColor[sizeIndex])
 
   }
 
@@ -85,6 +82,7 @@ function Cart({style}) {
     .then((response) => {
       console.log('this is my post request: ', response)
       setUserSelections(prevState => ({ ...prevState, "sku": '', "size": '', "qty": ''}))
+      setSkuDetailByColor(prevState => ({ ...prevState, "qtyBySize": []}))
     })
   }
   }
@@ -95,6 +93,9 @@ function Cart({style}) {
   useEffect(() => {
     getStyleInfo() // fetch prod desc by id
     getSkuDetail(style.skus) // all qty/size combos
+    setUserSelections({ "sku": '', "size": '', "qty": ''})
+    setSkuDetailByColor(prevState => ({ ...prevState, "qtyBySize": []}))
+
 
   }, [style.style_id])
 
@@ -122,20 +123,20 @@ function Cart({style}) {
 
       <div className="sizeOptions">
       <div className="dropdown">
-        <select value={userSelections.size} onChange={e => getSizeAndQty(e.target.value)}>
+        <select aria-label="size selector" onChange={e => getSizeAndQty(e.target.value)}>
           <option>Select a size...</option>
           {skuDetailByColor.sizesAndQtyByColor.map((sku, index) => (
-            <option key={index} name={sku.quantity} value={index}>
+            <option key={index} value={index}>
               {sku.size}
             </option>
           ))}
         </select>
         {console.log('this is my size: ', userSelections.size)}
         {console.log('this is my qtyArray: ', skuDetailByColor.qtyBySize)}
-        {console.log('this is my qty: ', userSelections.qty)}
+        {console.log('this is my qty: ', skuDetailByColor.sizesAndQtyByColor)}
 
       </div>
-      <select value={userSelections.qty} onChange={e => setUserSelections(prevState => ({ ...prevState, "qty": e.target.value}))}>
+      <select aria-label="quantity selector" value={userSelections.qty} onChange={e => setUserSelections(prevState => ({ ...prevState, "qty": e.target.value}))}>
           <option>QTY</option>
           {skuDetailByColor.qtyBySize.map((qty) => (
             <option key={qty} value={qty}>
@@ -144,10 +145,13 @@ function Cart({style}) {
           ))}
         </select>
       </div>
-      <button type="button" onClick={() => {sendOrder(userSelections.sku, userSelections.qty)}}>
+      <button className="button" type="button" onClick={() => {sendOrder(userSelections.sku, userSelections.qty)}}>
         Add To Bag
       </button>
+      <div>
+        <div className="styleSlogan">{skuDetailByColor.mainStyleInfo.slogan}</div>
       <p className="styleDescription">{skuDetailByColor.mainStyleInfo.description}</p>
+      </div>
   </div>
 
   )

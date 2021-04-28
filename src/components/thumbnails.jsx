@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+function Thumbnails ({style, handleCurrentSkuTitleClick, name}) {
+
+  function sendCurrentThumbnail(colorway) {
+
+    if(!colorway) {
+      handleCurrentSkuTitleClick(style)
+    } else {
+      handleCurrentSkuTitleClick(colorway)
+    }
+
+  }
+
+  useEffect(() => {
+    sendCurrentThumbnail()
 
 
+  }, [style.style_id])
 
-const Thumbnails = ({style, handleCurrentSkuTitleClick, name}) => (
-        <li key={style.photos[0].thumbnail_url}>
-          <div className="title">
-          {name}
-          </div>
-          <img className="thumbnailImg" src={style.photos[0].thumbnail_url} alt="Avatar" onClick={() => handleCurrentSkuTitleClick(style)}/>
-        </li>
-);
+  return (
+    <li key={style.photos[0].thumbnail_url}>
+      <div className="title">
+      {name}
+      </div>
+      <img className="thumbnailImg" src={style.photos[0].thumbnail_url} alt="Avatar" onClick={() => sendCurrentThumbnail(style)}/>
+    </li>
+  )
+}
+
+// const Thumbnails = ({style, handleCurrentSkuTitleClick, name}) => (
+
+// );
 
 
 
