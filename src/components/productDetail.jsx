@@ -14,23 +14,23 @@ function StyleList({styles, handleCurrentSkuTitleClick}) {
       ))
   }
 
-  function getRatings() {
-    axios.get('/reviews/meta', {
-      params: {
-        product_id: styles.product_id
-      }
-    })
-      .then(({meta}) => {
-        console.log('hope this worked: ', meta)
-      })
-      // .catch((err) => {
-      //   throw err;
-      // })
-    }
+  // function getRatings() {
+  //   axios.get('/reviews/meta', {
+  //     params: {
+  //       product_id: styles.product_id
+  //     }
+  //   })
+  //     .then(({meta}) => {
+  //       console.log('hope this worked: ', meta)
+  //     })
+  //     // .catch((err) => {
+  //     //   throw err;
+  //     // })
+  //   }
 
   useEffect(() => {
     getStyleInfo()
-    getRatings()
+    // getRatings()
   }, [styles])
 
   return (
