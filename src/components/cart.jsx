@@ -21,10 +21,6 @@ function Cart({style}) {
   })
 
 
-  // let selectedSizeQty = {};
-  // let selectedSkuVar = '';
-
-
   function getStyleInfo() {
     axios.get(`products/${myId}`)
       .then(({data}) => (

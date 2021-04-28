@@ -23,7 +23,9 @@ function Thumbnails ({style, handleCurrentSkuTitleClick, name}) {
       <div className="title">
       {name}
       </div>
+      <div className="centerImg">
       <img className="thumbnailImg" src={style.photos[0].thumbnail_url} alt="Avatar" onClick={() => sendCurrentThumbnail(style)}/>
+      </div>
     </li>
   )
 }
