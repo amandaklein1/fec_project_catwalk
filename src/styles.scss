@@ -34,7 +34,6 @@ body {
   display: flex;
   width: 65vw;
   position: relative;
-
 }
 
 ::-webkit-scrollbar {
@@ -95,6 +94,17 @@ body {
   top: 2%;
   font-size: 30px;
   font-weight: 400;
+  color: white;
+  background-color: transparent;
+}
+
+.action-button-star {
+  position: absolute;
+  z-index: 2;
+  left: 87%;
+  top: 2%;
+  font-size: 15px;
+  font-weight: 700;
   color: white;
   background-color: transparent;
 }

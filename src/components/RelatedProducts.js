@@ -3,13 +3,18 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import Modal from 'react-modal';
 import RelatedProductTile from './RelatedProductTile';
+
+Modal.setAppElement('#app');
 
 const RelatedProducts = ({ changeCurrentProduct }) => {
 
   const [relatedIds, setRelatedIds] = useState([]);
   const [scrollPos, setScrollPos] = useState(0);
   const currentProductId = useSelector(state => state.styleList.product_id); // string 11001
+
+  const [modalOpen, setModalOpen] = useState(false);
 
   const fetchRelatedProductsIds = () => {
     axios.get(`/products/${currentProductId}/related`)
@@ -37,25 +42,32 @@ const RelatedProducts = ({ changeCurrentProduct }) => {
   }
 
   return (
-    <div>
-      <span className="carousel-title">Related Products</span>
-      <div id="related-products-widget">
-        <div className="carousel-wrapper">
-          <ol id="RP-carousel" className="tiles">
-            {relatedIds.map((id) => (
-              <RelatedProductTile tileType='related' relId={id} key={id} changeCurrentProduct={changeCurrentProduct}/>
-            ))}
-          </ol>
+    <>
+      <div>
+        <span className="carousel-title">Related Products</span>
+        <div id="related-products-widget">
+          <div className="carousel-wrapper">
+            <ol id="RP-carousel" className="tiles">
+              {relatedIds.map((id) => (
+                <RelatedProductTile tileType='related' relId={id} key={id} changeCurrentProduct={changeCurrentProduct} setModalOpen={setModalOpen}/>
+              ))}
+            </ol>
 
-          {scrollPos !== 0 ?
-          <span className="prev-arrow" onClick={handlePrevScroll}>&lsaquo;</span> :
-          <></>}
+            {scrollPos !== 0 ?
+            <span className="prev-arrow" onClick={handlePrevScroll}>&lsaquo;</span> :
+            <></>}
 
-          <span className="next-arrow" onClick={handleNextScroll}>&rsaquo;</span>
+            <span className="next-arrow" onClick={handleNextScroll}>&rsaquo;</span>
 
+          </div>
         </div>
       </div>
-    </div>
+      <Modal
+        isOpen={modalOpen}
+        onRequestClose={() => setModalOpen(false)}>
+        <p>Modal window</p>
+      </Modal>
+    </>
   );
 };
 
