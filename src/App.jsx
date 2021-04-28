@@ -39,7 +39,7 @@ const App = () => {
     <>
     <div className="logo">
       <h1>
-        Project Catwalk App
+        PepManda
       </h1>
       </div>
       <div className="productOverview">

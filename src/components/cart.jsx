@@ -123,7 +123,7 @@ function Cart({style}) {
 
       <div className="sizeOptions">
       <div className="dropdown">
-        <select aria-label="size selector" onChange={e => getSizeAndQty(e.target.value)}>
+        <select className="dropdownFont" aria-label="size selector" onChange={e => getSizeAndQty(e.target.value)}>
           <option>Select a size...</option>
           {skuDetailByColor.sizesAndQtyByColor.map((sku, index) => (
             <option key={index} value={index}>
@@ -136,7 +136,7 @@ function Cart({style}) {
         {console.log('this is my qty: ', skuDetailByColor.sizesAndQtyByColor)}
 
       </div>
-      <select aria-label="quantity selector" value={userSelections.qty} onChange={e => setUserSelections(prevState => ({ ...prevState, "qty": e.target.value}))}>
+      <select className="dropdownFont" aria-label="quantity selector" value={userSelections.qty} onChange={e => setUserSelections(prevState => ({ ...prevState, "qty": e.target.value}))}>
           <option>QTY</option>
           {skuDetailByColor.qtyBySize.map((qty) => (
             <option key={qty} value={qty}>

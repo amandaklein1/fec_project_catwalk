@@ -10,19 +10,22 @@ body {
   font-size: 16px;
   width: 100%;
   min-height: 100vh;
+  overflow: scroll;
 }
 
 h1 {
-  font-size: 20px;
+  font-size: 40px;
   color: white;
   background-color: black;
+  height: 50px;
+  /* padding: 5px; */
 }
 
 
 .thumbnailImg {
   /* vertical-align: middle; */
-  width: 25px;
-  height: 25px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
 }
 
@@ -69,6 +72,7 @@ h1 {
   justify-content: center;
   width: 100%;
   height: 13px;
+  font-family: 'Overlock SC', cursive;
 }
 
 .salePrice {
@@ -83,14 +87,21 @@ h1 {
   display: flex;
   flex-direction: row;
   gap: 5px;
-  font-size: 10px;
+  font-size: 12px;
+  font-family: 'Didact Gothic', sans-serif;
 }
 
 .sizeOptions {
   display: flex;
   flex-direction: row;
   gap: 5px;
-  font-size: 15px;
+
+}
+
+.dropdownFont {
+  border-radius: 2px;
+  font-size: 12px;
+  font-family: 'Didact Gothic', sans-serif;
 }
 
 .styleSlogan {
@@ -101,6 +112,7 @@ h1 {
 .styleDescription {
   font-size: 10px;
   font-family: 'Lato', sans-serif;
+  width: 50%;
 }
 
 .currentStyleMain {
@@ -114,6 +126,7 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  font-family: 'Didact Gothic', sans-serif;
 }
 
 .styleInfo {
@@ -160,15 +173,17 @@ h1 {
   width: 90px;
   height: 20px;
   transition-duration: 0.4s;
-  background-color: rgb(133, 150, 182);
-  border-radius: 5px;
+  background-color: black;
+  border-radius: 2px;
   font-size: 12px;
   border-style: none;
+  font-family: 'Didact Gothic', sans-serif;
+  color: white;
 
 }
 
 .button:hover {
-  background-color: rgb(118, 134, 163);;
+  background-color: rgba(0, 0, 0, 0.527);
 }
 
 .category {
@@ -178,4 +193,8 @@ h1 {
 
 .styleTitle {
   font-family: 'Roboto Condensed', sans-serif;
+}
+
+.logo {
+  font-family: 'Unica One', cursive;
 }
