@@ -37,17 +37,20 @@ const App = () => {
 
   return (
     <>
-    <div className="logo">
-      <h1>
+
+      <div>
+      <div className="logo">
+         <h1>
         PepManda
       </h1>
-      </div>
+         </div>
+
       <div className="productOverview">
         <div >
           <StyleVisualContainer />
         </div>
         <div className="rightSide">
-        <div>
+        <div className="styleInfoAndThumbs">
         <StyleListContainer />
         </div>
         <div>
@@ -55,9 +58,11 @@ const App = () => {
         </div>
         </div>
         </div>
+        <div className="relatedView">
       <RelatedProducts changeCurrentProduct={changeCurrentProduct}/>
       <UserOutfit changeCurrentProduct={changeCurrentProduct}/>
-
+      </div>
+      </div>
     </>
   );
 }

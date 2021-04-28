@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Thumbnails from './thumbnails';
+import StarRatings from './tiles-subcomps/StarRatings';
 
 
 function StyleList({styles, handleCurrentSkuTitleClick}) {
@@ -13,15 +14,31 @@ function StyleList({styles, handleCurrentSkuTitleClick}) {
       ))
   }
 
+  function getRatings() {
+    axios.get('/reviews/meta', {
+      params: {
+        product_id: styles.product_id
+      }
+    })
+      .then(({meta}) => {
+        console.log('hope this worked: ', meta)
+      })
+      // .catch((err) => {
+      //   throw err;
+      // })
+    }
+
   useEffect(() => {
     getStyleInfo()
+    getRatings()
   }, [styles])
 
   return (
-    <div className="styleInfoAndThumbs">
+    <div className="transparent">
       {console.log('What is happening: ', styles)}
       <div className="styleInfo">
-
+      <StarRatings className="tile-stars" data={styles}/>
+      {console.log('hi amanda:', styleInfo)}
     <div>
       <h3 className="styleTitle">{styleInfo.name}</h3>
     </div>
