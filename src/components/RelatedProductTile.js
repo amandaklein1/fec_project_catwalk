@@ -19,6 +19,7 @@ const RelatedProductTile = ({ tileType, relId, changeCurrentProduct }) => {
   // fetches current product's information
   const currentProdTile = useFetchAndStore('current', 11001);
 
+
   return (
     <>
       {(tile.photos && tile.photos[0].url) ?
@@ -60,11 +61,40 @@ const RelatedProductTile = ({ tileType, relId, changeCurrentProduct }) => {
       }
       <Modal
         isOpen={modalOpen}
-        onRequestClose={() => setModalOpen(false)}>
+        onRequestClose={() => setModalOpen(false)}
+        style={{
+          overlay: {
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(50, 50, 50, .7)'
+          },
+          content: {
+            position: 'absolute',
+            top: '35%',
+            left: '32%',
+            // right: '50%',
+            // bottom: '50%',
+            border: '1px solid #ccc',
+            backgroundColor: 'rgba(255, 255, 255, 1)',
+            overflow: 'auto',
+            WebkitOverflowScrolling: 'touch',
+            borderRadius: '4px',
+            outline: 'none',
+            padding: '20px',
+            width: '35%',
+            height: '45%',
+            borderRadius: '20px',
+          }
+        }}>
+
         <ModalContent
           related={tile}
           current={currentProdTile.tile}
         />
+
       </Modal>
     </>
 
