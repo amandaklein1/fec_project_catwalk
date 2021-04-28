@@ -3,10 +3,11 @@ body {
 
 #app {
   margin: auto;
-  width: 90vw;
+  padding: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: scroll;
 }
 
 #related-products-widget {
@@ -26,13 +27,14 @@ body {
   display: block;
   margin-top: 50px;
   margin-bottom: 20px;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .carousel-wrapper {
   display: flex;
   width: 65vw;
   position: relative;
-  position: relative;
+
 }
 
 ::-webkit-scrollbar {
@@ -94,6 +96,7 @@ body {
   font-size: 30px;
   font-weight: 400;
   color: white;
+  background-color: transparent;
 }
 
 .add-outfit-circle {
@@ -172,10 +175,12 @@ body {
   flex: 0 0 25%;
   color: rgb(122, 122, 122);
   font-size: 0.7em;
+  font-family: 'Didact Gothic', sans-serif;
 }
 
 .sale-price {
   color: red;
+  font-family: 'Didact Gothic', sans-serif;
 }
 
 .full-price {
