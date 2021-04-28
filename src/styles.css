@@ -2,7 +2,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  background-color: white;
+  /* background-color: white; */
 }
 
 body {
@@ -21,7 +21,6 @@ h1 {
   /* padding: 5px; */
 }
 
-
 .thumbnailImg {
   /* vertical-align: middle; */
   width: 40px;
@@ -36,7 +35,6 @@ h1 {
   flex-direction: row;
   gap: 40px;
   padding: 15px;
-
 }
 
 .rightSide {
@@ -95,7 +93,6 @@ h1 {
   display: flex;
   flex-direction: row;
   gap: 5px;
-
 }
 
 .dropdownFont {
@@ -166,7 +163,6 @@ h1 {
   position: absolute;
   padding: 10px;
   background-color: transparent;
-
 }
 
 .button {
@@ -179,7 +175,6 @@ h1 {
   border-style: none;
   font-family: 'Didact Gothic', sans-serif;
   color: white;
-
 }
 
 .button:hover {
