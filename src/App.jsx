@@ -37,26 +37,31 @@ const App = () => {
 
   return (
     <>
+
+      <div>
       <div className="logo">
-        <h1>
-          PepManda
-        </h1>
-      </div>
+         <h1>
+        PepManda
+      </h1>
+         </div>
 
       <div className="productOverview">
         <StyleVisualContainer />
         <div className="rightSide">
-          <StyleListContainer />
-          <div>
-            <CartContainer />
-          </div>
+        <div className="styleInfoAndThumbs">
+        <StyleListContainer />
         </div>
-      </div>
-
+        <div>
+        <CartContainer />
+        </div>
+        </div>
+        </div>
+        <div className="relatedView">
       <RelatedProducts changeCurrentProduct={changeCurrentProduct}/>
 
       <UserOutfit changeCurrentProduct={changeCurrentProduct}/>
-
+      </div>
+      </div>
     </>
   );
 }
