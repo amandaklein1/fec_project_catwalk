@@ -3,10 +3,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
+import {BrowserRouter as Router, Link} from 'react-router-dom';
 import Modal from 'react-modal';
 import StarRatings from './tiles-subcomps/StarRatings';
 import useFetchAndStore from './tiles-subcomps/useFetchAndStore';
 import ModalContent from './ModalContent';
+
 
 Modal.setAppElement('#app');
 
@@ -21,82 +23,85 @@ const RelatedProductTile = ({ tileType, relId, changeCurrentProduct }) => {
 
 
   return (
-    <>
-      {(tile.photos && tile.photos[0].url) ?
+    <Router>
+      <>
+        {(tile.photos && tile.photos[0].url) ?
 
-        <div className="tile">
+          <div className="tile">
 
-          <div className="tile-img-container">
+            <div className="tile-img-container">
 
-            <span
-              className="action-button-star"
-              onClick={() => {
-                setModalOpen(true);
-              }}
-              >
-            &#x2606;</span>
+              <span
+                className="action-button-star"
+                onClick={() => {
+                  setModalOpen(true);
+                }}
+                >
+              &#x2606;</span>
+              <Link to={`/${relId}`}>
+                {tile.photos ?
+                <img className="tile-img" src={tile.photos[0].url || 'https://source.unsplash.com/300x200/?sunglasses'} alt={tile.name} width="150" onClick={() => changeCurrentProduct(relId)}/> :
+                <></>}
+              </Link>
+            </div>
 
-            {tile.photos ?
-            <img className="tile-img" src={tile.photos[0].url || 'https://source.unsplash.com/300x200/?sunglasses'} alt={tile.name} width="150" onClick={() => changeCurrentProduct(relId)}/> :
-            <></>}
+            <div className="tile-texts-container">
+              <div className="tile-category">{tile.category}</div>
 
-          </div>
+              <div className="tile-name">{tile.name}</div>
 
-          <div className="tile-texts-container">
-            <div className="tile-category">{tile.category}</div>
+              {tile.salePrice ?
+              <div className="tile-price-container">
+                <span className="tile-price sale-price">  {`$${tile.salePrice}`}</span>
+                <span className="tile-price full-price">{tile.defaultPrice}</span>
+              </div> :
+              <div className="tile-price">{tile.defaultPrice}</div>}
+            </div>
+            <StarRatings className="tile-stars" data={tile}/>
 
-            <div className="tile-name">{tile.name}</div>
+          </div> :
+          <></>
+        }
+        <Modal
+          isOpen={modalOpen}
+          onRequestClose={() => setModalOpen(false)}
+          closeTimeoutMS={300}
+          style={{
+            overlay: {
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(50, 50, 50, .7)'
+            },
+            content: {
+              position: 'absolute',
+              top: '35%',
+              left: '32%',
+              // right: '50%',
+              // bottom: '50%',
+              border: '1px solid #ccc',
+              backgroundColor: 'rgba(255, 255, 255, 1)',
+              overflow: 'auto',
+              WebkitOverflowScrolling: 'touch',
+              borderRadius: '4px',
+              outline: 'none',
+              padding: '20px',
+              width: '35%',
+              height: '45%',
+              borderRadius: '20px',
+            }
+          }}>
 
-            {tile.salePrice ?
-            <div className="tile-price-container">
-              <span className="tile-price sale-price">  {`$${tile.salePrice}`}</span>
-              <span className="tile-price full-price">{tile.defaultPrice}</span>
-            </div> :
-            <div className="tile-price">{tile.defaultPrice}</div>}
-          </div>
-          <StarRatings className="tile-stars" data={tile}/>
+          <ModalContent
+            related={tile}
+            current={currentProdTile.tile}
+          />
 
-        </div> :
-        <></>
-      }
-      <Modal
-        isOpen={modalOpen}
-        onRequestClose={() => setModalOpen(false)}
-        style={{
-          overlay: {
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(50, 50, 50, .7)'
-          },
-          content: {
-            position: 'absolute',
-            top: '35%',
-            left: '32%',
-            // right: '50%',
-            // bottom: '50%',
-            border: '1px solid #ccc',
-            backgroundColor: 'rgba(255, 255, 255, 1)',
-            overflow: 'auto',
-            WebkitOverflowScrolling: 'touch',
-            borderRadius: '4px',
-            outline: 'none',
-            padding: '20px',
-            width: '35%',
-            height: '45%',
-            borderRadius: '20px',
-          }
-        }}>
-
-        <ModalContent
-          related={tile}
-          current={currentProdTile.tile}
-        />
-
-      </Modal>
-    </>
+        </Modal>
+      </>
+    </Router>
 
 
   );

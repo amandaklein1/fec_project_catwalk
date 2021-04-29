@@ -23,14 +23,14 @@ const UserOutfit = ({ changeCurrentProduct }) => {
   return (
     <div id="user-outfit-widget">
       <span className="carousel-title">Your Outfit</span>
-      <div className="carousel-wrapper">
+      <div>
 
         <ol className="tiles">
 
           <AddOutfitTile outfitIds={outfitIds} setOutfitIds={setOutfitIds} currentProductId={currentProductId}/>
 
           {outfitIds.map((id) => (
-            <UserOutfitTile outfitId={id} key={id} changeCurrentProduct={changeCurrentProduct} outfitIds={outfitIds} setOutfitIds={setOutfitIds} currentProductId={currentProductId}/>
+            id && <UserOutfitTile outfitId={id} key={id} changeCurrentProduct={changeCurrentProduct} outfitIds={outfitIds} setOutfitIds={setOutfitIds} currentProductId={currentProductId}/>
           ))}
 
         </ol>
