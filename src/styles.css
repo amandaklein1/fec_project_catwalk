@@ -90,6 +90,12 @@ h1 {
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+
+}
+
+.thumbIcon {
+  position: absolute;
+  margin-left: 40px;
 }
 
 .centerImg {
@@ -113,12 +119,14 @@ h1 {
   gap: 5px;
   font-size: 12px;
   font-family: 'Didact Gothic', sans-serif;
+  margin-left: 6px;
 }
 
 .sizeOptions {
   display: flex;
   flex-direction: row;
   gap: 5px;
+  margin-left: 6px;
 }
 
 .dropdownFont {
@@ -132,6 +140,7 @@ h1 {
   font-size: 13px;
   /* font-family: 'Lato', sans-serif; */
   font-family: 'PT Sans', sans-serif;
+  margin-left: 6px;
 }
 
 .styleDescription {
@@ -139,6 +148,7 @@ h1 {
   font-family: 'Lato', sans-serif;
   /* font-family: 'PT Sans', sans-serif; */
   width: 50%;
+  margin-left: 6px;
 }
 
 .currentStyleMain {
@@ -212,10 +222,17 @@ h1 {
   font-family: 'Didact Gothic', sans-serif;
   /* font-family: 'PT Sans', sans-serif; */
   color: white;
+  margin-left: 6px;
+  align-items: center;
+
 }
 
 .button:hover {
   background-color: rgba(0, 0, 0, 0.527);
+}
+
+.bag {
+  /* margin-top: 2px; */
 }
 
 .category {
@@ -225,11 +242,16 @@ h1 {
   font-family: 'Alegreya Sans SC', sans-serif;
   color: #1b1b1b;
   background-color: transparent;
+  margin-left: 6px;
 }
 
 .styleTitle {
   font-family: 'Roboto Condensed', sans-serif;
   background-color: transparent;
+  margin-left: 6px;
   /* font-family: 'PT Sans', sans-serif; */
 }
+
+
+
 
