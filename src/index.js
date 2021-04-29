@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import {store, persistor, history} from '../store/store';
+import {store, persistor} from '../store/store';
 import App from "./App";
 import "./styles.css";
 import "./styles.scss";
@@ -15,3 +15,5 @@ ReactDOM.render(
   </Provider>, document.getElementById('app')
 
 );
+
+
