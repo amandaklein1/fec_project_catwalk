@@ -28,12 +28,13 @@ h1 {
   font-family: 'Unica One', cursive;
   display: flex;
   justify-content: center;
-  background-color: transparent;
+  background-color: white;
   box-shadow: 10px 12px 8px 1px #88888811;
   padding: 5px;
   width: 100%;
+  z-index: 2;
+  position: fixed;
 }
-
 
 .productOverview {
   width: 100%;
@@ -44,7 +45,6 @@ h1 {
   margin-left: 50px;
   margin-top: 50px;
   background-color: transparent;
-
 }
 
 .relatedView {
@@ -96,13 +96,13 @@ h1 {
 .thumbIcon {
   position: absolute;
   margin-left: 40px;
+  cursor: pointer;
 }
 
 .centerImg {
   /* vertical-align: middle; */
   display: flex;
   justify-content: center;
-
 }
 
 .salePrice {
@@ -190,6 +190,7 @@ h1 {
   height: 50px;
   object-fit: cover;
   box-shadow: 2px 2px 5px black;
+  cursor: pointer;
 }
 
 .mainImage {

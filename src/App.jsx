@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { hot } from 'react-hot-loader/root';
+import {useLocation} from "react-router-dom";
 import axios from 'axios';
 import StyleListContainer from '../containers/StyleListContainer';
 import StyleVisualContainer from '../containers/styleVisualContainer';
@@ -11,18 +12,21 @@ import RelatedProducts from './components/RelatedProducts';
 import UserOutfit from './components/UserOutfit';
 
 
-const App = () => {
+const App = ({ match }) => {
+
+  const initialId = match.params.productId || '11001';
+  // console.log('INITIAL ID', initialId);
 
   const dispatch = useDispatch();
-  const [currentProduct, setCurrentProduct] = useState('11001');
+  const [currentProduct, setCurrentProduct] = useState(initialId);
 
   const changeCurrentProduct = (newProductId) => {
     console.log('updating current product');
     setCurrentProduct(newProductId);
-
   }
 
   useEffect(() => {
+
     axios.get(`/products/${currentProduct}/styles`)
     .then(({data}) => {
       dispatch({
@@ -46,9 +50,7 @@ const App = () => {
          </div>
 
       <div className="productOverview">
-        <div >
-          <StyleVisualContainer />
-        </div>
+        <StyleVisualContainer />
         <div className="rightSide">
         <div className="styleInfoAndThumbs">
         <StyleListContainer />
@@ -60,6 +62,7 @@ const App = () => {
         </div>
         <div className="relatedView">
       <RelatedProducts changeCurrentProduct={changeCurrentProduct}/>
+
       <UserOutfit changeCurrentProduct={changeCurrentProduct}/>
       </div>
       </div>
@@ -68,46 +71,3 @@ const App = () => {
 }
 
 export default App;
-
-
-/*
-
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-
-    }
-  }
-
-  render() {
-    return (
-      <>
-        <h1>
-          Project Catwalk App
-        </h1>
-        <div className="productOverview">
-          <div >
-            <StyleVisualContainer />
-          </div>
-          <div>
-          <div>
-          <StyleListContainer />
-          </div>
-          <div>
-          <CartContainer />
-          </div>
-          </div>
-          </div>
-        <RelatedProducts />
-        <UserOutfit />
-
-      </>
-    );
-  }
-}
-
-export default App;
-
-
-*/
