@@ -9,7 +9,6 @@ const cartRoutes = require('./routes/cart.js');
 const reviewsRoutes = require('./routes/reviews.js');
 
 
-
 const app = express();
 const PORT = 3000;
 
