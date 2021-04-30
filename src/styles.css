@@ -78,7 +78,7 @@ h1 {
 }
 
 .thumbnail-grid .title {
-  font-size: 5px;
+  font-size: 6px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -95,6 +95,12 @@ h1 {
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  cursor: pointer;
+}
+
+.thumbIcon {
+  position: absolute;
+  margin-left: 40px;
   cursor: pointer;
 }
 
@@ -118,12 +124,14 @@ h1 {
   gap: 5px;
   font-size: 12px;
   font-family: 'Didact Gothic', sans-serif;
+  margin-left: 6px;
 }
 
 .sizeOptions {
   display: flex;
   flex-direction: row;
   gap: 5px;
+  margin-left: 6px;
 }
 
 .dropdownFont {
@@ -223,6 +231,8 @@ h1 {
   font-family: 'Didact Gothic', sans-serif;
   /* font-family: 'PT Sans', sans-serif; */
   color: white;
+  margin-left: 6px;
+  align-items: center;
 }
 
 .button:hover {
@@ -237,6 +247,7 @@ h1 {
   font-family: 'Alegreya Sans SC', sans-serif;
   color: #1b1b1b;
   background-color: transparent;
+  margin-left: 6px;
 }
 
 .styleTitle {
