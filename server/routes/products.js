@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     }
   })
     .then((result) => {
-      console.log(result.data);
+      // console.log(result.data);
       res.send(result.data);
     })
     .catch((err) => {
@@ -36,11 +36,11 @@ router.get('/:product_id', (req, res) => {
     }
   })
     .then((result) => {
-      console.log(util.inspect(result.data, {showHidden: false, depth: null})) // shows all nested structures
+      // console.log(util.inspect(result.data, {showHidden: false, depth: null})) // shows all nested structures
       res.send(result.data);
     })
     .catch((err) => {
-      console.log(err.message);
+      console.log(`err fetching products/${id}`, err.message);
       res.sendStatus(500);
     });
 
@@ -56,11 +56,11 @@ router.get('/:product_id/styles', (req, res) => {
     }
   })
     .then((result) => {
-      console.log(util.inspect(result.data, {showHidden: false, depth: null})) // shows all nested structures
+      // console.log(util.inspect(result.data, {showHidden: false, depth: null})) // shows all nested structures
       res.send(result.data);
     })
     .catch((err) => {
-      console.log(err.message);
+      console.log(`err fetching products/${id}/styles`, err.message);
       res.sendStatus(500);
     });
 
@@ -76,11 +76,11 @@ router.get('/:product_id/related', (req, res) => {
     }
   })
     .then((result) => {
-      console.log(result.data);
+      // console.log(result.data);
       res.send(result.data);
     })
     .catch((err) => {
-      console.log(err.message);
+      console.log(`err fetching products/${id}/related`, err.message);
       res.sendStatus(500);
     });
 

@@ -40,7 +40,10 @@ const RelatedProductTile = ({ tileType, relId, changeCurrentProduct }) => {
               &#x2606;</span>
               <Link to={`/${relId}`}>
                 {tile.photos ?
-                <img className="tile-img" src={tile.photos[0].url || 'https://source.unsplash.com/300x200/?sunglasses'} alt={tile.name} width="150" onClick={() => changeCurrentProduct(relId)}/> :
+                <img className="tile-img" src={tile.photos[0].url || 'https://source.unsplash.com/300x200/?sunglasses'} alt={tile.name} width="150" onClick={() => {
+                 changeCurrentProduct(relId);
+                 window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}/> :
                 <></>}
               </Link>
             </div>

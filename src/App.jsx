@@ -24,7 +24,6 @@ const App = ({ match }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-
     axios.get(`/products/${currentProduct}/styles`)
     .then(({data}) => {
       dispatch({
@@ -40,28 +39,28 @@ const App = ({ match }) => {
   return (
     <>
       <div>
-      <div className="logo">
-         <h1>
-        PepManda
-      </h1>
-         </div>
+        <div className="logo">
+          <h1>
+            <a href="http://localhost:3000">PepManda</a>
+          </h1>
+        </div>
 
-      <div className="productOverview">
-        <StyleVisualContainer />
-        <div className="rightSide">
-        <div className="styleInfoAndThumbs">
-        <StyleListContainer />
+        <div className="productOverview">
+          <StyleVisualContainer />
+          <div className="rightSide">
+            <div className="styleInfoAndThumbs">
+              <StyleListContainer />
+            </div>
+            <div>
+              <CartContainer />
+            </div>
+          </div>
         </div>
-        <div>
-        <CartContainer />
-        </div>
-        </div>
-        </div>
-        <div className="relatedView">
-      <RelatedProducts changeCurrentProduct={changeCurrentProduct}/>
+        <div className="relatedView RPUOwrapper">
+          <RelatedProducts changeCurrentProduct={changeCurrentProduct}/>
 
-      <UserOutfit changeCurrentProduct={changeCurrentProduct}/>
-      </div>
+          <UserOutfit changeCurrentProduct={changeCurrentProduct}/>
+        </div>
       </div>
     </>
   );

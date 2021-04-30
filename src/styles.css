@@ -14,6 +14,11 @@ body {
   background-color: transparent;
 }
 
+a {
+  color: inherit;
+  text-decoration: none; /* no underline */
+}
+
 h1 {
   font-size: 30px;
   color: white;
@@ -90,12 +95,6 @@ h1 {
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-
-}
-
-.thumbIcon {
-  position: absolute;
-  margin-left: 40px;
   cursor: pointer;
 }
 
@@ -119,14 +118,12 @@ h1 {
   gap: 5px;
   font-size: 12px;
   font-family: 'Didact Gothic', sans-serif;
-  margin-left: 6px;
 }
 
 .sizeOptions {
   display: flex;
   flex-direction: row;
   gap: 5px;
-  margin-left: 6px;
 }
 
 .dropdownFont {
@@ -226,17 +223,11 @@ h1 {
   font-family: 'Didact Gothic', sans-serif;
   /* font-family: 'PT Sans', sans-serif; */
   color: white;
-  margin-left: 6px;
-  align-items: center;
-
 }
 
 .button:hover {
   background-color: rgba(0, 0, 0, 0.527);
-}
-
-.bag {
-  /* margin-top: 2px; */
+  cursor: pointer;
 }
 
 .category {
@@ -246,7 +237,6 @@ h1 {
   font-family: 'Alegreya Sans SC', sans-serif;
   color: #1b1b1b;
   background-color: transparent;
-  margin-left: 6px;
 }
 
 .styleTitle {
@@ -258,28 +248,3 @@ h1 {
 }
 
 
-
-/* The alert message box */
-.alert {
-  padding: 20px;
-  background-color: #f44336; /* Red */
-  color: white;
-  margin-bottom: 15px;
-}
-
-/* The close button */
-.closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-/* When moving the mouse over the close button */
-.closebtn:hover {
-  color: black;
-}
