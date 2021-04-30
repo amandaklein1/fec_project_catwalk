@@ -2,8 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { hot } from 'react-hot-loader/root';
-import {useLocation} from "react-router-dom";
 import axios from 'axios';
 import StyleListContainer from '../containers/StyleListContainer';
 import StyleVisualContainer from '../containers/styleVisualContainer';
@@ -40,7 +38,6 @@ const App = ({ match }) => {
 
   return (
     <>
-
       <div>
         <div className="logo">
           <h1>

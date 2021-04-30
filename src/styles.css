@@ -137,6 +137,8 @@ h1 {
   font-size: 13px;
   /* font-family: 'Lato', sans-serif; */
   font-family: 'PT Sans', sans-serif;
+  margin-left: 6px;
+  margin-top: 15px;
 }
 
 .styleDescription {
@@ -144,6 +146,9 @@ h1 {
   font-family: 'Lato', sans-serif;
   /* font-family: 'PT Sans', sans-serif; */
   width: 50%;
+  margin-left: 6px;
+  margin-top: 2px;
+
 }
 
 .currentStyleMain {
@@ -190,8 +195,8 @@ h1 {
 
 .mainImage {
   /* vertical-align: middle; */
-  width: 450px;
-  height: 550px;
+  width: 425px;
+  height: 525px;
   object-fit: cover;
   position: relative;
 }
@@ -237,5 +242,9 @@ h1 {
 .styleTitle {
   font-family: 'Roboto Condensed', sans-serif;
   background-color: transparent;
+  margin-left: 6px;
+  font-size: 25px;
   /* font-family: 'PT Sans', sans-serif; */
 }
+
+
