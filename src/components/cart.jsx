@@ -72,11 +72,14 @@ function Cart({style}) {
 
   }
 
+
   function sendOrder(sku, qty) {
-    console.log('my sku: ', sku);
-    console.log('my qty: ', qty)
+    if(!sku) {
+      alert('Please select a size!');
+    }
 
     if (sku && qty) {
+      alert('Added to cart!');
     axios.post('/cart', {
       sku_id: sku,
       count: qty
@@ -125,7 +128,7 @@ function Cart({style}) {
 
       <div className="sizeOptions">
       <div className="dropdown">
-        <select className="dropdownFont" aria-label="size selector" onChange={e => getSizeAndQty(e.target.value)}>
+        <select value={!userSelections.size ? userSelections.size : undefined} className="dropdownFont" aria-label="size selector" onChange={e => getSizeAndQty(e.target.value)}>
           <option>Select a size...</option>
           {skuDetailByColor.sizesAndQtyByColor.map((sku, index) => (
             <option key={index} value={index}>
@@ -147,7 +150,8 @@ function Cart({style}) {
           ))}
         </select>
       </div>
-      <button className="button" type="button" onClick={() => {sendOrder(userSelections.sku, userSelections.qty)}}>
+      <button className="button" type="button" onClick={() => {sendOrder(userSelections.sku, userSelections.qty)
+      }}>
         <CgShoppingCart className="bag" /> Add To Bag
       </button>
       <div>

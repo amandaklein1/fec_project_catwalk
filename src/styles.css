@@ -141,6 +141,7 @@ h1 {
   /* font-family: 'Lato', sans-serif; */
   font-family: 'PT Sans', sans-serif;
   margin-left: 6px;
+  margin-top: 15px;
 }
 
 .styleDescription {
@@ -149,6 +150,8 @@ h1 {
   /* font-family: 'PT Sans', sans-serif; */
   width: 50%;
   margin-left: 6px;
+  margin-top: 2px;
+
 }
 
 .currentStyleMain {
@@ -195,8 +198,8 @@ h1 {
 
 .mainImage {
   /* vertical-align: middle; */
-  width: 450px;
-  height: 550px;
+  width: 425px;
+  height: 525px;
   object-fit: cover;
   position: relative;
 }
@@ -250,9 +253,33 @@ h1 {
   font-family: 'Roboto Condensed', sans-serif;
   background-color: transparent;
   margin-left: 6px;
+  font-size: 25px;
   /* font-family: 'PT Sans', sans-serif; */
 }
 
 
 
+/* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
 
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
