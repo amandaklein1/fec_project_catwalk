@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
+import { CgShoppingCart } from "react-icons/cg";
 
 function Cart({style}) {
 
@@ -46,6 +47,11 @@ function Cart({style}) {
 
     if (sizeQtyObj !== undefined) {
       setUserSelections(prevState => ({ ...prevState, "sku": sku, "size": sizeQtyObj.size, "qty": 1}))
+
+    if(sizeQtyObj.quantity === 0) {
+      qtyArray.push('SOLD OUT')
+    }
+
     if (sizeQtyObj.quantity > 15) {
       for(let i = 1; i < 16; i++) {
       qtyArray.push(i);
@@ -142,7 +148,7 @@ function Cart({style}) {
         </select>
       </div>
       <button className="button" type="button" onClick={() => {sendOrder(userSelections.sku, userSelections.qty)}}>
-        Add To Bag
+        <CgShoppingCart className="bag" /> Add To Bag
       </button>
       <div>
         <div className="styleSlogan">{skuDetailByColor.mainStyleInfo.slogan}</div>
