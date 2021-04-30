@@ -115,9 +115,9 @@ function Cart({style}) {
       <div>
         {
         style.sale_price === null ?
-        <div className="price"> {style.original_price} </div> : <div className="price">
-          <div className="orgPrice">{style.original_price}</div>
-          <div className="salePrice">{style.sale_price}</div>
+        <div className="price"> {`$${style.original_price}`} </div> : <div className="price">
+          <div className="orgPrice">{`$${style.original_price}`}</div>
+          <div className="salePrice">{`$${style.sale_price}`}</div>
         </div>
       }
       </div>
