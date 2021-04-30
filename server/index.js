@@ -15,15 +15,14 @@ const PORT = 3000;
 
 app.use(express.json());
 app.use('/', express.static("dist"));
-app.use('/:productId', express.static("dist"));
 
 
 ///// ROUTES /////
-app.use('/products', productsRoutes);
-app.use('/cart', cartRoutes);
-app.use('/reviews/', reviewsRoutes);
+app.use('*/products', productsRoutes);
+app.use('*/cart', cartRoutes);
+app.use('*/reviews/', reviewsRoutes);
 
-
+app.use('/:productId', express.static("dist")); // catch-all
 
 app.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}`);
