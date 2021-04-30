@@ -16,14 +16,14 @@ const App = ({ match }) => {
 
   const initialId = match.params.productId || '11001';
   // console.log('INITIAL ID', initialId);
-
-  const dispatch = useDispatch();
   const [currentProduct, setCurrentProduct] = useState(initialId);
 
   const changeCurrentProduct = (newProductId) => {
     console.log('updating current product');
     setCurrentProduct(newProductId);
   }
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
 
