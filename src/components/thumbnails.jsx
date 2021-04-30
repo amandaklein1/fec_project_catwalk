@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BsCheckCircle } from "react-icons/bs";
 
 
+
 function Thumbnails ({style, handleCurrentSkuTitleClick, name, icon}) {
 
 
