@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
       res.send(result.data);
     })
     .catch((err) => {
-      console.log(err.message);
+      console.log(`err with GET /cart req`, err.message);
       res.sendStatus(500);
     });
 

@@ -38,11 +38,11 @@ router.get('/', (req, res) => {
     params: {...req.query}
   })
     .then((result) => {
-      console.log(util.inspect(result.data, {showHidden: false, depth: null})) // shows all nested structures
+      // console.log(util.inspect(result.data, {showHidden: false, depth: null})) // shows all nested structures
       res.send(result.data);
     })
     .catch((err) => {
-      console.log(err);
+      console.log(`err fetching /reviews for ${req.params.product_id}`, err);
       res.sendStatus(500);
     });
 
@@ -79,11 +79,11 @@ router.get('/meta', (req, res) => {
     }
   })
     .then((result) => {
-      console.log(util.inspect(result.data, {showHidden: false, depth: null})) // shows all nested structures
+      // console.log(util.inspect(result.data, {showHidden: false, depth: null})) // shows all nested structures
       res.send(result.data);
     })
     .catch((err) => {
-      console.log(err.message);
+      console.log(`err fetching reviews/meta for ${id}`, err.message);
       res.sendStatus(500);
     });
 

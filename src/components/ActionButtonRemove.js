@@ -19,7 +19,7 @@ const ActionButtonRemove = ({ outfitId, outfitIds, setOutfitIds }) => {
 
         const remainingOutfits = [];
         for (let i = 0; i < savedOutfits.length; i++) {
-          if (String(savedOutfits[i].id) !== outfitId) {
+          if (savedOutfits[i].id !== outfitId) {
             remainingOutfits.push(savedOutfits[i]);
           }
         }
