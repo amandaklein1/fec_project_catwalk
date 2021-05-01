@@ -2,7 +2,6 @@
 import { connect } from 'react-redux';
 import StyleVisual from '../src/components/styleVisual';
 
-
 const mapStateToProps = (state) => ({
   style: state.thumbnails
 });

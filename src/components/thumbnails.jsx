@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { BsCheckCircle } from "react-icons/bs";
-
 
 
 function Thumbnails ({style, handleCurrentSkuTitleClick, name, icon}) {
-
-
 
   function sendCurrentThumbnail(colorway) {
 
@@ -13,11 +9,9 @@ function Thumbnails ({style, handleCurrentSkuTitleClick, name, icon}) {
       handleCurrentSkuTitleClick(style)
     } else {
       handleCurrentSkuTitleClick(colorway)
-
     }
 
   }
-
 
   useEffect(() => {
     sendCurrentThumbnail()
@@ -30,18 +24,11 @@ function Thumbnails ({style, handleCurrentSkuTitleClick, name, icon}) {
       {name}
       </div>
       <div className="centerImg">
-      <div className="thumbIcon">{icon}</div>
-      <img className="thumbnailImg" src={style.photos[0].thumbnail_url} alt="Avatar" onClick={() => { sendCurrentThumbnail(style)}} />
+        <div className="thumbIcon">{icon}</div>
+        <img className="thumbnailImg" src={style.photos[0].thumbnail_url} alt="Avatar" onClick={() => { sendCurrentThumbnail(style)}} />
       </div>
-
     </li>
   )
 }
-
-// const Thumbnails = ({style, handleCurrentSkuTitleClick, name}) => (
-
-// );
-
-
 
 export default Thumbnails;

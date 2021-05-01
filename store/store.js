@@ -317,6 +317,5 @@ export const store = createStore(
 );
 
 export const persistor = persistStore(store);
-// export const persistor = persistStore(store).purge();
 
 
