@@ -13,7 +13,6 @@ import UserOutfit from './components/UserOutfit';
 const App = ({ match }) => {
 
   const initialId = match.params.productId || '11001';
-  // console.log('INITIAL ID', initialId);
   const [currentProduct, setCurrentProduct] = useState(initialId);
 
   const changeCurrentProduct = (newProductId) => {
@@ -58,7 +57,6 @@ const App = ({ match }) => {
         </div>
         <div className="relatedView RPUOwrapper">
           <RelatedProducts changeCurrentProduct={changeCurrentProduct}/>
-
           <UserOutfit changeCurrentProduct={changeCurrentProduct}/>
         </div>
       </div>

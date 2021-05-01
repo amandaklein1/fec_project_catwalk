@@ -21,13 +21,10 @@ function Cart({style}) {
     size: ''
   })
 
-
   function getStyleInfo() {
     axios.get(`products/${myId}`)
       .then(({data}) => (
         setSkuDetailByColor(prevState => ({ ...prevState, "mainStyleInfo": data}))
-        // setStyleInfo(data)
-
       ))
       .catch((err) => {
         throw err;
@@ -72,7 +69,6 @@ function Cart({style}) {
 
   }
 
-
   function sendOrder(sku, qty) {
     if(!sku) {
       alert('Please select a size!');
@@ -80,27 +76,22 @@ function Cart({style}) {
 
     if (sku && qty) {
       alert('Added to cart!');
-    axios.post('/cart', {
-      sku_id: sku,
-      count: qty
-    })
-    .then((response) => {
-      console.log('this is my post request: ', response)
-      setUserSelections(prevState => ({ ...prevState, "sku": '', "size": '', "qty": ''}))
-      setSkuDetailByColor(prevState => ({ ...prevState, "qtyBySize": []}))
-    })
+      axios.post('/cart', {
+        sku_id: sku,
+        count: qty
+      })
+      .then(() => {
+        setUserSelections(prevState => ({ ...prevState, "sku": '', "size": '', "qty": ''}))
+        setSkuDetailByColor(prevState => ({ ...prevState, "qtyBySize": []}))
+      })
+    }
   }
-  }
-
-
-
 
   useEffect(() => {
     getStyleInfo() // fetch prod desc by id
     getSkuDetail(style.skus) // all qty/size combos
     setUserSelections({ "sku": '', "size": '', "qty": ''})
     setSkuDetailByColor(prevState => ({ ...prevState, "qtyBySize": []}))
-
 
   }, [style.style_id])
 
@@ -110,38 +101,26 @@ function Cart({style}) {
   return (
     <div className="currentStyleMain">
       <div>
-        {console.log('this is my cart: ',
-        skuDetailByColor
-        )}
-
-      </div>
-      <div>
         {
-        style.sale_price === null ?
-        <div className="price"> {`$${style.original_price}`} </div> : <div className="price">
-          <div className="orgPrice">{`$${style.original_price}`}</div>
-          <div className="salePrice">{`$${style.sale_price}`}</div>
-        </div>
-      }
+          style.sale_price === null ?
+          <div className="price"> {`$${style.original_price}`} </div> : <div className="price">
+            <div className="orgPrice">{`$${style.original_price}`}</div>
+            <div className="salePrice">{`$${style.sale_price}`}</div>
+          </div>
+        }
       </div>
-
-
       <div className="sizeOptions">
-      <div className="dropdown">
-        <select value={!userSelections.size ? userSelections.size : undefined} className="dropdownFont" aria-label="size selector" onChange={e => getSizeAndQty(e.target.value)}>
-          <option>Select a size...</option>
-          {skuDetailByColor.sizesAndQtyByColor.map((sku, index) => (
-            <option key={index} value={index}>
-              {sku.size}
-            </option>
-          ))}
-        </select>
-        {console.log('this is my size: ', userSelections.size)}
-        {console.log('this is my qtyArray: ', skuDetailByColor.qtyBySize)}
-        {console.log('this is my qty: ', skuDetailByColor.sizesAndQtyByColor)}
-
-      </div>
-      <select className="dropdownFont" aria-label="quantity selector" value={userSelections.qty} onChange={e => setUserSelections(prevState => ({ ...prevState, "qty": e.target.value}))}>
+        <div className="dropdown">
+          <select value={!userSelections.size ? userSelections.size : undefined} className="dropdownFont" aria-label="size selector" onChange={e => getSizeAndQty(e.target.value)}>
+            <option>Select a size...</option>
+            {skuDetailByColor.sizesAndQtyByColor.map((sku, index) => (
+              <option key={index} value={index}>
+                {sku.size}
+              </option>
+            ))}
+          </select>
+        </div>
+        <select className="dropdownFont" aria-label="quantity selector" value={userSelections.qty} onChange={e => setUserSelections(prevState => ({ ...prevState, "qty": e.target.value}))}>
           <option>QTY</option>
           {skuDetailByColor.qtyBySize.map((qty) => (
             <option key={qty} value={qty}>
@@ -156,7 +135,7 @@ function Cart({style}) {
       </button>
       <div>
         <div className="styleSlogan">{skuDetailByColor.mainStyleInfo.slogan}</div>
-      <p className="styleDescription">{skuDetailByColor.mainStyleInfo.description}</p>
+        <p className="styleDescription">{skuDetailByColor.mainStyleInfo.description}</p>
       </div>
   </div>
 

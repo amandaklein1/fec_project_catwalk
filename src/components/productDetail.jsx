@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Thumbnails from './thumbnails';
-import StarRatings from './tiles-subcomps/StarRatings';
 import { useSelector, useDispatch } from 'react-redux';
 import { BsCheckCircle } from "react-icons/bs";
+import Thumbnails from './thumbnails';
+import StarRatings from './tiles-subcomps/StarRatings';
+
 
 
 function StyleList({styles, handleCurrentSkuTitleClick}) {
@@ -44,9 +45,7 @@ function StyleList({styles, handleCurrentSkuTitleClick}) {
       .catch((err) => {
         throw err;
       })
-    }
-
-
+  }
 
   useEffect(() => {
     getStyleInfo()
@@ -56,12 +55,12 @@ function StyleList({styles, handleCurrentSkuTitleClick}) {
   return (
     <div className="transparent">
       <div className="styleInfo">
-      <StarRatings className="tile-stars" data={stars}/>
-    <div>
-      <h3 className="styleTitle">{styleInfo.name}</h3>
-    </div>
-    <div className="category">{styleInfo.category}</div>
-    </div>
+        <StarRatings className="tile-stars" data={stars}/>
+        <div>
+          <h3 className="styleTitle">{styleInfo.name}</h3>
+        </div>
+        <div className="category">{styleInfo.category}</div>
+      </div>
       <ul className="thumbnail-grid">
         {
           styles.results.map(style => (
@@ -75,7 +74,7 @@ function StyleList({styles, handleCurrentSkuTitleClick}) {
           ))
         }
       </ul>
-      </div>
+    </div>
   )
 }
 
